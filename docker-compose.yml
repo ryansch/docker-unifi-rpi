@@ -1,0 +1,20 @@
+version: '2'
+services:
+  unifi:
+    build: .
+    container_name: unifi
+    network_mode: host
+    volumes:
+      - unifi_config:/var/lib/unifi
+      - unifi_log:/var/log/unifi
+      - unifi_run:/var/run/unifi
+      - unifi_work:/usr/lib/unifi/work
+volumes:
+  unifi_config:
+    driver: local
+  unifi_log:
+    driver: local
+  unifi_run:
+    driver: local
+  unifi_work:
+    driver: local
