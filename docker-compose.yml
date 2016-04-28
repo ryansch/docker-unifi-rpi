@@ -1,7 +1,7 @@
 version: '2'
 services:
   unifi:
-    build: .
+    image: ryansch/unifi-rpi
     container_name: unifi
     network_mode: host
     volumes:
