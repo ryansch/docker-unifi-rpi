@@ -17,3 +17,7 @@
 - `sudo cp /opt/unifi/unifi.service /etc/systemd/system/`
 - `sudo systemctl enable /etc/systemd/system/unifi.service`
 - `sudo systemctl start unifi.service`
+
+### On mac:
+
+- Visit 'http://black-pearl.local:8080' with your browser
