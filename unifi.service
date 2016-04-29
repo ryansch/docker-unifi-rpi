@@ -1,0 +1,22 @@
+[Unit]
+Description=Unifi Controller
+After=docker.service
+BindsTo=docker.service
+
+[Service]
+TimeoutStartSec=0
+TimeoutStopSec=30
+Restart=always
+RestartSec=10
+
+WorkingDirectory=/opt/unifi
+
+ExecStartPre=-/usr/local/bin/docker-compose kill unifi
+ExecStartPre=-/usr/local/bin/docker-compose rm -f unifi
+
+ExecStart=/usr/local/bin/docker-compose up --force-recreate unifi
+
+ExecStop=/usr/local/bin/docker-compose stop unifi
+
+[Install]
+WantedBy=multi-user.target
