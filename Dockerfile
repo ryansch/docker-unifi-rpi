@@ -1,7 +1,7 @@
 FROM resin/rpi-raspbian:jessie
 MAINTAINER Ryan Schlesinger <ryan@ryanschlesinger.com>
 
-RUN echo "deb http://www.ubnt.com/downloads/unifi/debian stable ubiquiti" \
+RUN echo "deb http://www.ubnt.com/downloads/unifi/debian unifi5 ubiquiti" \
     > /etc/apt/sources.list.d/20ubiquiti.list
 
 RUN apt-key adv --keyserver keyserver.ubuntu.com --recv C0A52C50
