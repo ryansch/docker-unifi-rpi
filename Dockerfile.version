@@ -1,0 +1,10 @@
+FROM resin/rpi-raspbian:jessie
+MAINTAINER Ryan Schlesinger <ryan@ryanschlesinger.com>
+
+RUN echo "deb http://www.ubnt.com/downloads/unifi/debian unifi5 ubiquiti" \
+    > /etc/apt/sources.list.d/20ubiquiti.list
+
+RUN apt-key adv --keyserver keyserver.ubuntu.com --recv C0A52C50
+
+COPY check-version.sh /usr/bin/check-version.sh
+CMD ["check-version.sh"]
