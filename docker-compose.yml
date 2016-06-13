@@ -5,16 +5,23 @@ services:
     container_name: unifi
     network_mode: host
     volumes:
-      - unifi_config:/var/lib/unifi
-      - unifi_log:/var/log/unifi
-      - unifi_run:/var/run/unifi
-      - unifi_work:/usr/lib/unifi/work
+      # Unifi v5.0.7 creates all of these directories (some remain empty)
+      - config:/var/lib/unifi
+      - log:/usr/lib/unifi/logs
+      - log2:/var/log/unifi
+      - run:/usr/lib/unifi/run
+      - run2:/run/unifi
+      - work:/usr/lib/unifi/work
 volumes:
-  unifi_config:
+  config:
     driver: local
-  unifi_log:
+  log:
     driver: local
-  unifi_run:
+  log2:
     driver: local
-  unifi_work:
+  run:
+    driver: local
+  run2:
+    driver: local
+  work:
     driver: local
