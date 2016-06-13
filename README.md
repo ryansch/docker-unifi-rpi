@@ -25,6 +25,26 @@ Note: I've renamed the docker volumes to remove the double 'unifi'.  If you're u
 
 - Visit 'http://black-pearl.local:8080' with your browser
 
+## Unifi Image Upgrade
+
+- `docker pull ryansch/unifi-rpi:v5`
+- `sudo systemctl stop unifi.service`
+- `sudo systemctl start unifi.service`
+
+## Hypriot Upgrade
+
+- `docker run -it --rm -v unifi_config:/config --name=copy resin/rpi-raspbian:jessie bash`
+- `cd /config && tar -zcvf /tmp/unifi_config.tar.gz .` (in container)
+- `docker cp copy:/tmp/unifi_config.tar.gz .`
+- Now exit the `copy` container and copy the tarball from the pi to another system
+- Run the flash and setup instructions above stopping before starting unifi.
+- Copy the tarball from another system back to the pi
+- `docker volume create --name unifi_config`
+- `docker run -it --rm -v unifi_config:/config --name=copy resin/rpi-raspbian:jessie bash`
+- `docker cp unifi_config.tar.gz copy:/tmp/unifi_config.tar.gz`
+- `cd /config && tar -zxvf /tmp/unifi_config.tar.gz` (in container)
+- Volume is now populated from backup.  Continue with starting unifi.
+
 ## Building
 - `docker build -t ryansch/unifi-rpi:version -f Dockerfile.version .`
 - `docker run -it --rm ryansch/unifi-rpi:version`
