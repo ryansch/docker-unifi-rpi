@@ -13,9 +13,10 @@
 
 - Install ssh key and disable password logins
 - `cd /opt`
-- `sudo git clone ryansch/docker-unifi-rpi unifi`
+- `sudo git clone https://github.com/ryansch/docker-unifi-rpi unifi`
 - `sudo cp /opt/unifi/unifi.service /etc/systemd/system/`
 - `sudo systemctl enable /etc/systemd/system/unifi.service`
+- `docker pull ryansch/unifi-rpi:v5` (For download and extract progress)
 - `sudo systemctl start unifi.service`
 
 ### On mac:
