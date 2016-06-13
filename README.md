@@ -11,6 +11,8 @@
 
 ### On rpi:
 
+Note: I've renamed the docker volumes to remove the double 'unifi'.  If you're upgrading then you'll need to rename your volumes.
+
 - Install ssh key and disable password logins
 - `cd /opt`
 - `sudo git clone https://github.com/ryansch/docker-unifi-rpi unifi`
