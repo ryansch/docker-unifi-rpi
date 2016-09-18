@@ -5,7 +5,7 @@
 - `brew install pv`
 - `git clone https://github.com/hypriot/flash`
 - `cd flash/Darwin`
-- `./flash https://github.com/hypriot/image-builder-rpi/releases/download/v0.8.0/hypriotos-rpi-v0.8.0.img.zip` (or latest release)
+- `./flash https://downloads.hypriot.com/hypriotos-rpi-v1.0.0.img.zip` (or latest release)
 - When complete, install sd card into rpi and power on
 - `ssh pirate@black-pearl.local` (default password is hypriot)
 
