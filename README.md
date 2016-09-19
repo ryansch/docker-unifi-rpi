@@ -2,18 +2,20 @@
 
 ### On mac:
 - Insert rasp pi sd card into mac
-- `brew install pv`
+- `brew install pv ssh-copy-id`
 - `git clone https://github.com/hypriot/flash`
 - `cd flash/Darwin`
 - `./flash https://downloads.hypriot.com/hypriotos-rpi-v1.0.0.img.zip` (or latest release)
 - When complete, install sd card into rpi and power on
-- `ssh pirate@black-pearl.local` (default password is hypriot)
+- `ssh-copy-id -i .ssh/id_rsa.pub pirate@black-pearl.local` (default password is hypriot)
+- Disable password logins: `PasswordAuthentication no` in /etc/ssh/sshd_config
+Note: You may have to enable password logins on your mac os client temporarily to complete these steps.
+- `systemctl restart ssh.service`
 
 ### On rpi:
 
 Note: I've renamed the docker volumes to remove the double 'unifi'.  If you're upgrading then you'll need to rename your volumes.
 
-- Install ssh key and disable password logins
 - `cd /opt`
 - `sudo git clone https://github.com/ryansch/docker-unifi-rpi unifi`
 - `sudo cp /opt/unifi/unifi.service /etc/systemd/system/`
@@ -33,14 +35,14 @@ Note: I've renamed the docker volumes to remove the double 'unifi'.  If you're u
 
 ## Hypriot Upgrade
 
-- `docker run -it --rm -v unifi_config:/config --name=copy resin/rpi-raspbian:jessie bash`
+- `docker run -it --rm -v unifi_config:/config --name=copy resin/rpi-raspbian:jessie-20160831 bash`
 - `cd /config && tar -zcvf /tmp/unifi_config.tar.gz .` (in container)
 - `docker cp copy:/tmp/unifi_config.tar.gz .`
 - Now exit the `copy` container and copy the tarball from the pi to another system
 - Run the flash and setup instructions above stopping before starting unifi.
 - Copy the tarball from another system back to the pi
 - `docker volume create --name unifi_config`
-- `docker run -it --rm -v unifi_config:/config --name=copy resin/rpi-raspbian:jessie bash`
+- `docker run -it --rm -v unifi_config:/config --name=copy resin/rpi-raspbian:jessie-20160831 bash`
 - `docker cp unifi_config.tar.gz copy:/tmp/unifi_config.tar.gz`
 - `cd /config && tar -zxvf /tmp/unifi_config.tar.gz` (in container)
 - Volume is now populated from backup.  Continue with starting unifi.
