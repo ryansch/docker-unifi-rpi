@@ -9,6 +9,7 @@
 - When complete, install sd card into rpi and power on
 - `ssh-copy-id -i .ssh/id_rsa.pub pirate@black-pearl.local` (default password is hypriot)
 - Disable password logins: `PasswordAuthentication no` in /etc/ssh/sshd_config
+
 Note: You may have to enable password logins on your mac os client temporarily to complete these steps.
 - `systemctl restart ssh.service`
 
