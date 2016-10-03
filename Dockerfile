@@ -7,7 +7,7 @@ RUN echo "deb http://www.ubnt.com/downloads/unifi/debian unifi5 ubiquiti" \
 
 RUN apt-key adv --keyserver keyserver.ubuntu.com --recv C0A52C50
 
-ENV UNIFI_VERSION 5.2.7-8740
+ENV UNIFI_VERSION 5.2.9-8748
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     unifi=${UNIFI_VERSION} \
