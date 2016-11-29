@@ -1,15 +1,14 @@
-# Use jessie-20160831 until bash bug is fixed
-FROM resin/rpi-raspbian:jessie-20160831
+FROM resin/rpi-raspbian:latest
 MAINTAINER Ryan Schlesinger <ryan@ryanschlesinger.com>
 
 RUN echo "deb http://www.ubnt.com/downloads/unifi/debian unifi5 ubiquiti" \
-    > /etc/apt/sources.list.d/20ubiquiti.list
-
-RUN apt-key adv --keyserver keyserver.ubuntu.com --recv C0A52C50
+    > /etc/apt/sources.list.d/20ubiquiti.list && \
+    apt-key adv --keyserver keyserver.ubuntu.com --recv C0A52C50
 
 ENV UNIFI_VERSION 5.2.9-8748
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
+    oracle-java8-jdk \
     unifi=${UNIFI_VERSION} \
     && rm -rf /var/lib/apt/lists/*
 
