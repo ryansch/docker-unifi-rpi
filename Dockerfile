@@ -7,8 +7,9 @@ RUN echo "deb http://www.ubnt.com/downloads/unifi/debian unifi5 ubiquiti" \
 
 # Install java before unifi so a controller update doesn't force
 # a rebuild/redownload of java
+ENV JAVA_VERSION 8u65
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    oracle-java8-jdk \
+    oracle-java8-jdk=${JAVA_VERSION} \
     && rm -rf /var/lib/apt/lists/*
 
 ENV UNIFI_VERSION 5.2.9-8748
