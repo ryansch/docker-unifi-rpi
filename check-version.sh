@@ -2,4 +2,4 @@
 set -e
 
 apt-get update
-apt-cache madison unifi
+apt-cache madison oracle-java8-jdk unifi
