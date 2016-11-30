@@ -5,10 +5,15 @@ RUN echo "deb http://www.ubnt.com/downloads/unifi/debian unifi5 ubiquiti" \
     > /etc/apt/sources.list.d/20ubiquiti.list && \
     apt-key adv --keyserver keyserver.ubuntu.com --recv C0A52C50
 
+# Install java before unifi so a controller update doesn't force
+# a rebuild/redownload of java
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    oracle-java8-jdk \
+    && rm -rf /var/lib/apt/lists/*
+
 ENV UNIFI_VERSION 5.2.9-8748
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    oracle-java8-jdk \
     unifi=${UNIFI_VERSION} \
     && rm -rf /var/lib/apt/lists/*
 
