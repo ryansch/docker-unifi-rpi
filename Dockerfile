@@ -17,7 +17,8 @@ ENV JAVA_INSTALLER_VERSION 8u111+8u111arm-1~webupd8~0
 RUN apt-get update && apt-get install -y --no-install-recommends \
     oracle-java8-installer=${JAVA_INSTALLER_VERSION} \
     oracle-java8-set-default \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* \
+    && rm -rf /var/cache/oracle-jdk8-installer
 
 ENV UNIFI_VERSION 5.2.9-8748
 
