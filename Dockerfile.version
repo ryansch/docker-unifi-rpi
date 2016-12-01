@@ -1,5 +1,4 @@
-# Use jessie-20160831 until bash bug is fixed
-FROM resin/rpi-raspbian:jessie-20160831
+FROM resin/rpi-raspbian:latest
 MAINTAINER Ryan Schlesinger <ryan@ryanschlesinger.com>
 
 RUN echo "deb http://www.ubnt.com/downloads/unifi/debian unifi5 ubiquiti" \
