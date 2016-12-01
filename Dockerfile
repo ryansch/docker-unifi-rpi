@@ -3,14 +3,22 @@ MAINTAINER Ryan Schlesinger <ryan@ryanschlesinger.com>
 
 RUN echo "deb http://www.ubnt.com/downloads/unifi/debian unifi5 ubiquiti" \
     > /etc/apt/sources.list.d/20ubiquiti.list && \
-    apt-key adv --keyserver keyserver.ubuntu.com --recv C0A52C50
+    apt-key adv --keyserver keyserver.ubuntu.com --recv C0A52C50 && \
+    echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu xenial main" \
+    > /etc/apt/sources.list.d/webupd8team-java.list && \
+    echo "deb-src http://ppa.launchpad.net/webupd8team/java/ubuntu xenial main" \
+    >> /etc/apt/sources.list.d/webupd8team-java.list && \
+    apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys EEA14886 && \
+    echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections
 
 # Install java before unifi so a controller update doesn't force
 # a rebuild/redownload of java
-ENV JAVA_VERSION 8u65
+ENV JAVA_INSTALLER_VERSION 8u111+8u111arm-1~webupd8~0
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    oracle-java8-jdk=${JAVA_VERSION} \
-    && rm -rf /var/lib/apt/lists/*
+    oracle-java8-installer=${JAVA_INSTALLER_VERSION} \
+    oracle-java8-set-default \
+    && rm -rf /var/lib/apt/lists/* \
+    && rm -rf /var/cache/oracle-jdk8-installer
 
 ENV UNIFI_VERSION 5.2.9-8748
 
