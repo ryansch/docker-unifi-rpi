@@ -36,7 +36,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends wget && \
       wget https://www.ubnt.com/downloads/unifi/${UNIFI_VERSION}/unifi_sysvinit_all.deb && \
       dpkg --install unifi_sysvinit_all.deb ; \
       apt-get install -f && \
-      apt-get remove -y wget && \
       rm -rf /var/lib/apt/lists/*
 
 RUN ln -s /var/lib/unifi /usr/lib/unifi/data
