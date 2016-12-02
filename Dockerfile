@@ -36,7 +36,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends wget && \
       wget https://www.ubnt.com/downloads/unifi/${UNIFI_VERSION}/unifi_sysvinit_all.deb && \
       dpkg --install unifi_sysvinit_all.deb ; \
       apt-get install -f && \
-      rm -rf /var/lib/apt/lists/*
+      rm -rf /var/lib/apt/lists/* && \
+      rm -rf /tmp/build
 
 RUN ln -s /var/lib/unifi /usr/lib/unifi/data
 EXPOSE 8080/tcp 8081/tcp 8443/tcp 8843/tcp 8880/tcp 3478/udp
