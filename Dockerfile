@@ -32,7 +32,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends wget && \
       mkdir -p /tmp/build && \
       cd /tmp/build && \
       wget https://www.ubnt.com/downloads/unifi/${UNIFI_VERSION}/unifi_sysvinit_all.deb && \
-      dpkg --install unifi_sysvinit_all.deb && \
+      dpkg --install unifi_sysvinit_all.deb ; \
       apt-get install -f && \
       apt-get autoremove -y wget && \
       rm -rf /var/lib/apt/lists/*
