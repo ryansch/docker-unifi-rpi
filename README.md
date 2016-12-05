@@ -36,16 +36,12 @@ Note: I've renamed the docker volumes to remove the double 'unifi'.  If you're u
 
 ## Hypriot Upgrade
 
-- `docker run -it --rm -v unifi_config:/config --name=copy resin/rpi-raspbian:jessie-20160831 bash`
-- `cd /config && tar -zcvf /tmp/unifi_config.tar.gz .` (in container)
-- `docker cp copy:/tmp/unifi_config.tar.gz .`
-- Now exit the `copy` container and copy the tarball from the pi to another system
+- `docker run -it --rm -v unifi_config:/config -v $(pwd):/backup --name=copy -w /config resin/rpi-raspbian:latest tar -zcf /backup/unifi_config.tar.gz .`
+- Copy the tarball from the pi to another system
 - Run the flash and setup instructions above stopping before starting unifi.
 - Copy the tarball from another system back to the pi
 - `docker volume create --name unifi_config`
-- `docker run -it --rm -v unifi_config:/config --name=copy resin/rpi-raspbian:jessie-20160831 bash`
-- `docker cp unifi_config.tar.gz copy:/tmp/unifi_config.tar.gz`
-- `cd /config && tar -zxvf /tmp/unifi_config.tar.gz` (in container)
+- `docker run -it --rm -v unifi_config:/config -v $(pwd):/backup --name=copy -w /config resin/rpi-raspbian:latest tar -zxf /backup/unifi_config.tar.gz .`
 - Volume is now populated from backup.  Continue with starting unifi.
 
 ## Building
