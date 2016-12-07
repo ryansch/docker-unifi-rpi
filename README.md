@@ -1,3 +1,7 @@
+# Supported tags and respective `Dockerfile` links
+
+- [`5.3.8`, `v5`, `latest`, (*Dockerfile*)](https://github.com/ryansch/docker-unifi-rpi/blob/master/Dockerfile)
+
 ## Usage
 
 ### On mac:
