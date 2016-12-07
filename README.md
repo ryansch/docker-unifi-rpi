@@ -9,7 +9,7 @@
 - `brew install pv ssh-copy-id`
 - `git clone https://github.com/hypriot/flash`
 - `cd flash/Darwin`
-- `./flash https://downloads.hypriot.com/hypriotos-rpi-v1.0.0.img.zip` (or latest release)
+- `./flash https://github.com/hypriot/image-builder-rpi/releases/download/v1.1.1/hypriotos-rpi-v1.1.1.img.zip` (or latest release)
 - When complete, install sd card into rpi and power on
 - `ssh-copy-id -i .ssh/id_rsa.pub pirate@black-pearl.local` (default password is hypriot)
 - Disable password logins: `PasswordAuthentication no` in /etc/ssh/sshd_config
