@@ -1,8 +1,8 @@
 # Supported tags and respective `Dockerfile` links
 
-- [`5.5.0`, (*v5-unstable/Dockerfile*)](https://github.com/ryansch/docker-unifi-rpi/blob/master/v5-unstable/Dockerfile)
-- [`5.3.10`, (*v5-stable-candidate/Dockerfile*)](https://github.com/ryansch/docker-unifi-rpi/blob/master/v5-stable-candidate/Dockerfile)
 - [`5.3.8`, `v5`, `latest`, (*v5/Dockerfile*)](https://github.com/ryansch/docker-unifi-rpi/blob/master/v5/Dockerfile)
+- [`5.3.10`, (*v5-stable-candidate/Dockerfile*)](https://github.com/ryansch/docker-unifi-rpi/blob/master/v5-stable-candidate/Dockerfile)
+- [`5.5.0`, (*v5-unstable/Dockerfile*)](https://github.com/ryansch/docker-unifi-rpi/blob/master/v5-unstable/Dockerfile)
 
 ## Usage
 
