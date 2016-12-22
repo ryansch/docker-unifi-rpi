@@ -6,7 +6,8 @@
 
 ## Usage
 
-### On mac:
+### On mac (or any computer really):
+
 - Insert rasp pi sd card into mac
 - `brew install pv ssh-copy-id`
 - `git clone https://github.com/hypriot/flash`
@@ -20,8 +21,6 @@ Note: You may have to enable password logins on your mac os client temporarily t
 - `systemctl restart ssh.service`
 
 ### On rpi:
-
-Note: I've renamed the docker volumes to remove the double 'unifi'.  If you're upgrading then you'll need to rename your volumes.
 
 - `cd /opt`
 - `sudo git clone https://github.com/ryansch/docker-unifi-rpi unifi`
