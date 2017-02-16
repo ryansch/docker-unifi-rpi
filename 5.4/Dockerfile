@@ -13,7 +13,7 @@ RUN echo "deb http://www.ubnt.com/downloads/unifi/debian unifi5 ubiquiti" \
 
 # Install java before unifi so a controller update doesn't force
 # a rebuild/redownload of java
-ENV JAVA_INSTALLER_VERSION 8u111+8u111arm-1~webupd8~0
+ENV JAVA_INSTALLER_VERSION 8u121-1~webupd8~0
 RUN apt-get update && apt-get install -y --no-install-recommends \
     oracle-java8-installer=${JAVA_INSTALLER_VERSION} \
     oracle-java8-set-default \
