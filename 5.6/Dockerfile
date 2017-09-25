@@ -1,9 +1,7 @@
 FROM resin/rpi-raspbian:latest
 MAINTAINER Ryan Schlesinger <ryan@ryanschlesinger.com>
 
-RUN echo "deb http://www.ubnt.com/downloads/unifi/debian unifi5 ubiquiti" \
-    > /etc/apt/sources.list.d/20ubiquiti.list && \
-    apt-key adv --keyserver keyserver.ubuntu.com --recv C0A52C50 && \
+RUN apt-key adv --keyserver keyserver.ubuntu.com --recv C0A52C50 && \
     echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu xenial main" \
     > /etc/apt/sources.list.d/webupd8team-java.list && \
     echo "deb-src http://ppa.launchpad.net/webupd8team/java/ubuntu xenial main" \
@@ -20,16 +18,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/* \
     && rm -rf /var/cache/oracle-jdk8-installer
 
-# Install from official releases
-# ENV UNIFI_VERSION 5.2.9-8748
-# RUN apt-get update && apt-get install -y --no-install-recommends \
-#     unifi=${UNIFI_VERSION} \
-#     && rm -rf /var/lib/apt/lists/*
-
 # Install any version from deb download
 # Use dpkg to mark the package for install (expect it to fail to complete the installation)
 # Use apt-get install -f to complete the installation with dependencies
-ENV UNIFI_VERSION 5.6.16-86cdeea491
+ENV UNIFI_VERSION 5.6.18-8261dc5066
 RUN apt-get update && apt-get install -y --no-install-recommends wget && \
       mkdir -p /tmp/build && \
       cd /tmp/build && \
