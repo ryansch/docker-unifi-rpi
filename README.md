@@ -4,7 +4,7 @@
 - [`5.5.27`, (*5.5/Dockerfile*)](https://github.com/ryansch/docker-unifi-rpi/blob/master/5.5/Dockerfile)
 - [`5.6.22`, `v5`, `latest`, (*v5.6.22/5.6/Dockerfile*)](https://github.com/ryansch/docker-unifi-rpi/blob/v5.6.22/5.6/Dockerfile)
 - [`5.6.24`, (*5.6/Dockerfile*)](https://github.com/ryansch/docker-unifi-rpi/blob/master/5.6/Dockerfile)
-- [`5.7.4`, (*5.7/Dockerfile*)](https://github.com/ryansch/docker-unifi-rpi/blob/master/5.7/Dockerfile)
+- [`5.7.7`, (*5.7/Dockerfile*)](https://github.com/ryansch/docker-unifi-rpi/blob/master/5.7/Dockerfile)
 
 ## Usage
 
