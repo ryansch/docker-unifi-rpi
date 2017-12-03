@@ -24,22 +24,12 @@ Note: You may have to enable password logins on your mac os client temporarily t
 
 ### On rpi:
 
-- `cd /opt`
-- `sudo git clone https://github.com/ryansch/docker-unifi-rpi unifi`
-- `sudo cp /opt/unifi/unifi.service /etc/systemd/system/`
-- `sudo systemctl enable /etc/systemd/system/unifi.service`
-- `docker pull ryansch/unifi-rpi:v5` (For download and extract progress)
-- `sudo systemctl start unifi.service`
+- `sudo git clone https://github.com/ryansch/docker-unifi-rpi /opt/unifi && cd /opt/unifi`
+- `sudo docker-compose up -d`
 
 ### On mac:
 
 - Visit 'http://black-pearl.local:8080' with your browser
-
-## Unifi Image Upgrade
-
-- `docker pull ryansch/unifi-rpi:v5`
-- `sudo systemctl stop unifi.service`
-- `sudo systemctl start unifi.service`
 
 ## Hypriot Upgrade
 
