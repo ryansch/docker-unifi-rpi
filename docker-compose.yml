@@ -3,6 +3,7 @@ services:
   unifi:
     image: ryansch/unifi-rpi:v5
     container_name: unifi
+    restart: always
     network_mode: host
     volumes:
       # Unifi v5.0.7 creates all of these directories (some remain empty)
