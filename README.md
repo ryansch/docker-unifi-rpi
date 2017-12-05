@@ -8,38 +8,18 @@
 
 ## Usage
 
-### On mac (or any computer really):
+### Prerequisites
 
-- Insert rasp pi sd card into mac
-- `brew install pv ssh-copy-id`
-- `git clone https://github.com/hypriot/flash`
-- `cd flash/Darwin`
-- `./flash https://github.com/hypriot/image-builder-rpi/releases/download/v1.1.1/hypriotos-rpi-v1.1.1.img.zip` (or latest release)
-- When complete, install sd card into rpi and power on
-- `ssh-copy-id -i .ssh/id_rsa.pub pirate@black-pearl.local` (default password is hypriot)
-- Disable password logins: `PasswordAuthentication no` in /etc/ssh/sshd_config
-
-Note: You may have to enable password logins on your mac os client temporarily to complete these steps.
-- `systemctl restart ssh.service`
+A [Raspberry Pi](https://www.raspberrypi.org/) running with [Docker and Docker Compose installed](https://docs.docker.com/engine/installation/linux/docker-ce/debian/#install-using-the-convenience-script) on it. Guides such as [this](https://blog.alexellis.io/getting-started-with-docker-on-raspberry-pi/) or [this](https://blog.hypriot.com/getting-started-with-docker-and-mac-on-the-raspberry-pi/) are available for beginners.
 
 ### On rpi:
 
 - `sudo git clone https://github.com/ryansch/docker-unifi-rpi /opt/unifi && cd /opt/unifi`
 - `sudo docker-compose up -d`
 
-### On mac:
+### From any computer on your network:
 
-- Visit 'http://black-pearl.local:8080' with your browser
-
-## Hypriot Upgrade
-
-- `docker run -it --rm -v unifi_config:/config -v $(pwd):/backup --name=copy -w /config resin/rpi-raspbian:latest tar -zcf /backup/unifi_config.tar.gz .`
-- Copy the tarball from the pi to another system
-- Run the flash and setup instructions above stopping before starting unifi.
-- Copy the tarball from another system back to the pi
-- `docker volume create --name unifi_config`
-- `docker run -it --rm -v unifi_config:/config -v $(pwd):/backup --name=copy -w /config resin/rpi-raspbian:latest tar -zxf /backup/unifi_config.tar.gz .`
-- Volume is now populated from backup.  Continue with starting unifi.
+- Visit 'https://raspberrypi.local:8443/' with your browser. Replace `raspberrypi.local` with the actual hostname or local network IP address of your Raspberry Pi.
 
 ## Building
 - `docker build --pull -t ryansch/unifi-rpi:<version> <version>`
