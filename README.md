@@ -42,7 +42,4 @@ Note: You may have to enable password logins on your mac os client temporarily t
 - Volume is now populated from backup.  Continue with starting unifi.
 
 ## Building
-- `docker build -t ryansch/unifi-rpi:version -f Dockerfile.version .`
-- `docker run -it --rm ryansch/unifi-rpi:version`
-- Update Dockerfile with version number from previous step
-- `docker build -t ryansch/unifi-rpi:v5 .`
+- `docker build --pull -t ryansch/unifi-rpi:<version> <version>`
