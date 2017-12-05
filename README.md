@@ -18,12 +18,14 @@ A Raspberry Pi running with [Docker and Docker Compose installed](https://docs.d
 
 ## On rpi:
 
-- `sudo git clone https://github.com/ryansch/docker-unifi-rpi /opt/unifi && cd /opt/unifi`
-- `sudo docker-compose up -d`
+1. `mkdir unifi && cd unifi`
+2. `curl -O https://raw.githubusercontent.com/ryansch/docker-unifi-rpi/master/docker-compose.yml`
+3. (Optional) Edit `docker-compose.yml` to point to a different tag if you don't want `latest`.
+4. `sudo docker-compose up -d`
 
 ## From any computer on your network:
 
-- Visit https://raspberrypi.local:8443/ with your browser. Replace `raspberrypi.local` with the actual hostname or local network IP address of your Raspberry Pi.
+Visit https://raspberrypi.local:8443/ with your browser. Replace `raspberrypi.local` with the actual hostname or local network IP address of your Raspberry Pi.
 
-## Building
+# Building
 - `docker build --pull -t ryansch/unifi-rpi:<version> <version>`
