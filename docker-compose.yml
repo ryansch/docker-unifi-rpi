@@ -1,7 +1,7 @@
 version: '2'
 services:
   unifi:
-    image: ryansch/unifi-rpi:v5
+    image: ryansch/unifi-rpi:latest
     container_name: unifi
     restart: always
     network_mode: host
