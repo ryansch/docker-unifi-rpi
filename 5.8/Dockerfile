@@ -21,7 +21,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Install any version from deb download
 # Use dpkg to mark the package for install (expect it to fail to complete the installation)
 # Use apt-get install -f to complete the installation with dependencies
-ENV UNIFI_VERSION 5.8.12-e2c271f29d
+ENV UNIFI_VERSION 5.8.14-7ef9535d1b
 RUN apt-get update && apt-get install -y --no-install-recommends wget && \
       mkdir -p /tmp/build && \
       cd /tmp/build && \
