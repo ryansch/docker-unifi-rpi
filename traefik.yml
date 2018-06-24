@@ -1,0 +1,57 @@
+version: '3'
+services:
+  unifi:
+    image: ryansch/unifi-rpi:latest
+    container_name: unifi
+    restart: always
+    ports:
+      - "3478:3478/udp"
+      - "8080:8080"
+      - "8443"
+      - "8880:8880"
+      - "8843"
+      - "6789:6789"
+    networks:
+      - unifi
+    volumes:
+      # Unifi v5.0.7 creates all of these directories (some remain empty)
+      - config:/var/lib/unifi
+      - log:/usr/lib/unifi/logs
+      - log2:/var/log/unifi
+      - run:/usr/lib/unifi/run
+      - run2:/run/unifi
+      - work:/usr/lib/unifi/work
+    labels:
+      - "traefik.frontend"
+  traefik:
+    image: traefik:1.6
+    container_name: traefik
+    restart: always
+    ports:
+      - "80:80"
+      # - "443:443"
+      - "8443:8443"
+      # - "8843:8843"
+      - "4443:4443"
+    networks:
+      - unifi
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./traefik.toml:/traefik.toml
+      - ./acme.json:/acme.json
+volumes:
+  config:
+    driver: local
+  log:
+    driver: local
+  log2:
+    driver: local
+  run:
+    driver: local
+  run2:
+    driver: local
+  work:
+    driver: local
+networks:
+  unifi:
+    name: unifi
