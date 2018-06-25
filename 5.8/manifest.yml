@@ -1,5 +1,5 @@
 image: ryansch/unifi-rpi:5.8.23
-tags: ['5.8']
+tags: ['5.8', '5', 'latest']
 manifests:
   -
     image: ryansch/unifi-rpi:5.8.23-amd64
