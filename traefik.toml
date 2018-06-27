@@ -30,8 +30,8 @@ insecureSkipVerify = true
         "TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256",
         "TLS_RSA_WITH_AES_256_GCM_SHA384"
       ]
-    [entryPoints.foo.auth]
-     [entryPoints.foo.auth.basic]
+    [entryPoints.api.auth]
+     [entryPoints.api.auth.basic]
        users = [
          "unifi:$2y$05$xVd0Bq7yun1kTS8fyIoA/.xoS3gdgNg9fzHPxhjRTjLiEETXzvXJC"
        ]
