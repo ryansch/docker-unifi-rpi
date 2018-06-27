@@ -1,4 +1,4 @@
-version: '3'
+version: '3.6'
 services:
   unifi:
     image: ryansch/unifi-rpi:latest
@@ -24,7 +24,7 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=unifi"
-      - "traefik.controller.frontend.rule=Host:my-awesome-app.org"
+      - "traefik.controller.frontend.rule=Host:CHANGEME"
       - "traefik.controller.port=8443"
       - "traefik.controller.protocol=https"
   traefik:
@@ -58,3 +58,4 @@ volumes:
     driver: local
 networks:
   unifi:
+    name: unifi
