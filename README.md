@@ -35,3 +35,6 @@ Visit https://raspberrypi.local:8443/ with your browser. Replace `raspberrypi.lo
 
 # Building
 - `docker build --pull -t ryansch/unifi-rpi:<version> <version>`
+
+# TLS Support
+[TLS with Traefik](https://github.com/ryansch/docker-unifi-rpi/wiki/TLS-with-Traefik)
