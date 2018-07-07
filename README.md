@@ -4,11 +4,11 @@ Docker images for running Ubiquiti's [UniFi Controller software](https://www.ubn
 
 # Supported tags and respective `Dockerfile` links
 
-- [`5.6.39`, `5.6` (*v5.6.39/5.6/Dockerfile*)](https://github.com/ryansch/docker-unifi-rpi/blob/v5.6.39/5.6/Dockerfile)
-- [`5.7.23`, `5.7` (*v5.7.23/5.7/Dockerfile*)](https://github.com/ryansch/docker-unifi-rpi/blob/v5.7.23/5.7/Dockerfile)
-- [`5.7.28` (*5.7/Dockerfile*)](https://github.com/ryansch/docker-unifi-rpi/blob/master/5.7/Dockerfile)
+- [`5.6.39`, `5.6` (*v5.6.39/5.6*)](https://github.com/ryansch/docker-unifi-rpi/blob/v5.6.39/5.6)
+- [`5.7.23`, `5.7` (*v5.7.23/5.7*)](https://github.com/ryansch/docker-unifi-rpi/blob/v5.7.23/5.7)
+- [`5.7.28` (*5.7*)](https://github.com/ryansch/docker-unifi-rpi/blob/master/5.7)
 - [`5.8.24`, `5.8`, `5`, `latest` (*v5.8.24/5.8*)](https://github.com/ryansch/docker-unifi-rpi/blob/v5.8.24/5.8)
-- [`5.9.4` (*5.9/Dockerfile*)](https://github.com/ryansch/docker-unifi-rpi/blob/master/5.9/Dockerfile)
+- [`5.9.4` (*5.9*)](https://github.com/ryansch/docker-unifi-rpi/blob/master/5.9)
 
 ## Versions
 Ubiquiti releases 'unstable', 'testing', and 'stable candidate' versions as part of its beta group release structure.  These releases are included here.  Only stable releases are tagged with their general version (ex: `5.6` for the `5.6.30` stable release) or with `latest`.
