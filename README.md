@@ -2,7 +2,7 @@
 
 Docker images for running Ubiquiti's [UniFi Controller software](https://www.ubnt.com/download/unifi/) on a [Raspberry Pi](https://www.raspberrypi.org/).
 
-# Supported tags and respective `Dockerfile` links
+# Supported tags and respective `Dockerfile` directory links
 
 - [`5.6.39`, `5.6` (*v5.6.39/5.6*)](https://github.com/ryansch/docker-unifi-rpi/blob/v5.6.39/5.6)
 - [`5.7.23`, `5.7` (*v5.7.23/5.7*)](https://github.com/ryansch/docker-unifi-rpi/blob/v5.7.23/5.7)
