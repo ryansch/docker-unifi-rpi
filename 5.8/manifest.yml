@@ -1,0 +1,15 @@
+image: ryansch/unifi-rpi:5.8.25
+# tags: ['5.8', '5', 'latest']
+manifests:
+  -
+    image: ryansch/unifi-rpi:5.8.25-amd64
+    platform:
+      architecture: amd64
+      os: linux
+  -
+    image: ryansch/unifi-rpi:5.8.25-arm32v7
+    platform:
+      architecture: arm
+      os: linux
+      variant: v7
+

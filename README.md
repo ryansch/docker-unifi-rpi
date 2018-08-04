@@ -2,18 +2,18 @@
 
 Docker images for running Ubiquiti's [UniFi Controller software](https://www.ubnt.com/download/unifi/) on a [Raspberry Pi](https://www.raspberrypi.org/).
 
-# Supported tags and respective `Dockerfile` links
+# Supported tags and respective `Dockerfile` directory links
 
-- [`5.6.37`, `5.6` (*v5.6.37/5.6/Dockerfile*)](https://github.com/ryansch/docker-unifi-rpi/blob/v5.6.37/5.6/Dockerfile)
-- [`5.7.23`, `5.7`, `5`, `latest` (*v5.7.23/5.7/Dockerfile*)](https://github.com/ryansch/docker-unifi-rpi/blob/v5.7.23/5.7/Dockerfile)
-- [`5.7.25` (*5.7/Dockerfile*)](https://github.com/ryansch/docker-unifi-rpi/blob/master/5.7/Dockerfile)
-- [`5.8.14` (*5.8/Dockerfile*)](https://github.com/ryansch/docker-unifi-rpi/blob/master/5.8/Dockerfile)
+- [`5.6.39`, `5.6` (*v5.6.39/5.6*)](https://github.com/ryansch/docker-unifi-rpi/blob/v5.6.39/5.6)
+- [`5.8.24`, `5.8`, `5`, `latest` (*v5.8.24/5.8*)](https://github.com/ryansch/docker-unifi-rpi/blob/v5.8.24/5.8)
+- [`5.8.25` (*5.8*)](https://github.com/ryansch/docker-unifi-rpi/blob/master/5.8)
+- [`5.9.16` (*5.9*)](https://github.com/ryansch/docker-unifi-rpi/blob/master/5.9)
 
 ## Versions
 Ubiquiti releases 'unstable', 'testing', and 'stable candidate' versions as part of its beta group release structure.  These releases are included here.  Only stable releases are tagged with their general version (ex: `5.6` for the `5.6.30` stable release) or with `latest`.
 
 ## Supported Architectures
-`arm32v6`, `arm32v7`
+`arm32v7`,`amd64`
 
 # Usage
 
@@ -34,3 +34,6 @@ Visit https://raspberrypi.local:8443/ with your browser. Replace `raspberrypi.lo
 
 # Building
 - `docker build --pull -t ryansch/unifi-rpi:<version> <version>`
+
+# TLS Support
+[TLS with Traefik](https://github.com/ryansch/docker-unifi-rpi/wiki/TLS-with-Traefik)

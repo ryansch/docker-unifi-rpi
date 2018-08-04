@@ -1,0 +1,63 @@
+debug = false
+
+logLevel = "WARN"
+defaultEntryPoints = ["https","http"]
+insecureSkipVerify = true
+
+[entryPoints]
+  [entryPoints.http]
+    address = ":80"
+
+    [entryPoints.http.redirect]
+      entryPoint = "https"
+
+  [entryPoints.https]
+    address = ":8443"
+
+    [entryPoints.https.tls]
+      minVersion = "VersionTLS12"
+      cipherSuites = [
+        "TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256",
+        "TLS_RSA_WITH_AES_256_GCM_SHA384"
+      ]
+
+  [entryPoints.api]
+    address = ":8888"
+
+[api]
+  entryPoint = "api"
+  dashboard = true
+
+[retry]
+
+[docker]
+endpoint = "unix:///var/run/docker.sock"
+domain = "CHANGEME"
+watch = true
+exposedByDefault = false
+
+[acme]
+email = "CHANGEME"
+storage = "acme.json"
+entryPoint = "https"
+onHostRule = true
+[acme.httpChallenge]
+  entryPoint = "http"
+
+[file]
+  [backends]
+    [backends.backend1]
+      [backends.backend1.servers.server1]
+        url = "http://127.0.0.1:8888"
+
+  [frontends]
+    [frontends.frontend1]
+      entryPoints = ["https"]
+      backend = "backend1"
+      basicAuth = [
+        # Example with 123qweasd as the password (CHANGEME)
+        "unifi:$2y$05$xVd0Bq7yun1kTS8fyIoA/.xoS3gdgNg9fzHPxhjRTjLiEETXzvXJC"
+      ]
+      [frontends.frontend1.routes]
+        [frontends.frontend1.routes.route0]
+          rule = "PathPrefixStrip:/traefik"

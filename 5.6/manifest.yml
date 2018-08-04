@@ -1,0 +1,14 @@
+image: ryansch/unifi-rpi:5.6.39
+tags: ['5.6']
+manifests:
+  -
+    image: ryansch/unifi-rpi:5.6.39-amd64
+    platform:
+      architecture: amd64
+      os: linux
+  -
+    image: ryansch/unifi-rpi:5.6.39-arm
+    platform:
+      architecture: arm
+      os: linux
+
