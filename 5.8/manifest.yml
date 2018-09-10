@@ -1,13 +1,13 @@
-image: ryansch/unifi-rpi:5.8.28
-tags: ['5.8', '5', 'latest']
+image: ryansch/unifi-rpi:5.8.30
+# tags: ['5.8', '5', 'latest']
 manifests:
   -
-    image: ryansch/unifi-rpi:5.8.28-amd64
+    image: ryansch/unifi-rpi:5.8.30-amd64
     platform:
       architecture: amd64
       os: linux
   -
-    image: ryansch/unifi-rpi:5.8.28-arm32v7
+    image: ryansch/unifi-rpi:5.8.30-arm32v7
     platform:
       architecture: arm
       os: linux
