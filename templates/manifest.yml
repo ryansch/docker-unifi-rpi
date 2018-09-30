@@ -1,5 +1,8 @@
 image: ryansch/unifi-rpi:{{ docker_version }}
-{{ docker_tags }}
+tags:
+{{ #docker_tags }}
+  - {{ . }}
+{{ /docker_tags }}
 manifests:
   -
     image: ryansch/unifi-rpi:{{ docker_version }}-amd64
