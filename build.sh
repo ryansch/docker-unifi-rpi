@@ -20,4 +20,6 @@ docker build --pull -t ryansch/unifi-rpi:${docker_version}-amd64 -f ${family}/Do
 docker build --pull -t ryansch/unifi-rpi:${docker_version}-arm32v7 -f ${family}/Dockerfile.arm32v7 ${family}
 
 echo 'Testing Images'
-
+dgoss run ryansch/unifi-rpi:${docker_version}-amd64
+# Can't get java working under qemu for some reason
+# GOSS_PATH='/usr/local/bin/goss-linux-arm' dgoss run ryansch/unifi-rpi:${docker_version}-arm32v7
