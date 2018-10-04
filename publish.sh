@@ -10,7 +10,7 @@ declare -a docker_tags
 echo 'Tagging and Pushing to Git'
 git add .
 git commit -m "Adding ${docker_version}"
-# git tag -m "Version ${docker_version}" "v${docker_version}"
+ git tag -m "Version ${docker_version}" "v${docker_version}"
 git push
 git push --tags
 
