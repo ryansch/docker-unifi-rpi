@@ -32,7 +32,13 @@ A Raspberry Pi running with [Docker and Docker Compose installed](https://docs.d
 Visit https://raspberrypi.local:8443/ with your browser. Replace `raspberrypi.local` with the actual hostname or local network IP address of your Raspberry Pi.
 
 # Building
-- `docker build --pull -t ryansch/unifi-rpi:<version> <version>`
+- `./build.sh -v <docker version> -u <unifi version> [-t <additional docker tag> ...]`
+Example: `./build.sh -v 5.9.29 -u 5.9.29-04b5d20997 -t 5.9 -t 5 -t latest`
+
+# Publishing
+- `./publish.sh -v <docker version> -u <unifi version>`
+Example: `./publish.sh -v 5.9.29 -u 5.9.29-04b5d20997`
+
 
 # TLS Support
 [TLS with Traefik](https://github.com/ryansch/docker-unifi-rpi/wiki/TLS-with-Traefik)
