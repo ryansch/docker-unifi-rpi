@@ -33,10 +33,12 @@ Visit https://raspberrypi.local:8443/ with your browser. Replace `raspberrypi.lo
 
 # Building
 - `./build.sh -v <docker version> -u <unifi version> [-t <additional docker tag> ...]`
+
 Example: `./build.sh -v 5.9.29 -u 5.9.29-04b5d20997 -t 5.9 -t 5 -t latest`
 
 # Publishing
 - `./publish.sh -v <docker version> -u <unifi version>`
+
 Example: `./publish.sh -v 5.9.29 -u 5.9.29-04b5d20997`
 
 
