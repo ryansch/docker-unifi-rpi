@@ -3,6 +3,7 @@ set -e
 
 docker_version=''
 unifi_version=''
+family=''
 declare -a docker_tags
 
 . "lib/init_vars"
