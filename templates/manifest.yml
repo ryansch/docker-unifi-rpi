@@ -1,0 +1,18 @@
+image: ryansch/unifi-rpi:{{ docker_version }}
+tags:
+{{ #docker_tags }}
+  - {{ . }}
+{{ /docker_tags }}
+manifests:
+  -
+    image: ryansch/unifi-rpi:{{ docker_version }}-amd64
+    platform:
+      architecture: amd64
+      os: linux
+  -
+    image: ryansch/unifi-rpi:{{ docker_version }}-arm32v7
+    platform:
+      architecture: arm
+      os: linux
+      variant: v7
+

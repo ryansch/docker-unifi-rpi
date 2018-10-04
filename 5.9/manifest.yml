@@ -1,5 +1,5 @@
 image: ryansch/unifi-rpi:5.9.29
-# tags: ['5.9']
+tags:
 manifests:
   -
     image: ryansch/unifi-rpi:5.9.29-amd64
