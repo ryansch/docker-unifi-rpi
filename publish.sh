@@ -18,6 +18,7 @@ git push --tags
 echo 'Pushing'
 docker push ryansch/unifi-rpi:${docker_version}-amd64
 docker push ryansch/unifi-rpi:${docker_version}-arm32v7
+docker push ryansch/unifi-rpi:${docker_version}-arm64v8
 
 echo 'Pushing Manifest'
 manifest-tool push from-spec ${family}/manifest.yml
