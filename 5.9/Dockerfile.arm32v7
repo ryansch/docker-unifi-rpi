@@ -11,7 +11,7 @@ RUN apt-key adv --keyserver keyserver.ubuntu.com --recv C0A52C50 && \
 
 # Install java before unifi so a controller update doesn't force
 # a rebuild/redownload of java
-ENV JAVA_INSTALLER_VERSION 8u181-1~webupd8~1
+ENV JAVA_INSTALLER_VERSION 8u191-1~webupd8~1
 RUN apt-get update && apt-get install -y --no-install-recommends \
     oracle-java8-installer=${JAVA_INSTALLER_VERSION} \
     oracle-java8-set-default \
@@ -21,8 +21,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Install any version from deb download
 # Use dpkg to mark the package for install (expect it to fail to complete the installation)
 # Use apt-get install -f to complete the installation with dependencies
-ENV UNIFI_VERSION 5.9.29-04b5d20997
-ENV UNIFI_DOCKER_VERSION 5.9.29
+ENV UNIFI_VERSION 5.9.32-016da0b7c1
+ENV UNIFI_DOCKER_VERSION 5.9.32
 RUN apt-get update && apt-get install -y --no-install-recommends wget && \
       mkdir -p /tmp/build && \
       cd /tmp/build && \
