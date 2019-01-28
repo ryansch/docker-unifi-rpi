@@ -7,15 +7,15 @@ services:
     ports:
       - "3478:3478/udp"
       - "8080:8080"
-      - "8443"
+      - "8443:8443"
       - "8880:8880"
-      - "8843"
+      - "8843:8843"
       - "6789:6789"
     networks:
       - unifi
     volumes:
       # Unifi v5.0.7 creates all of these directories (some remain empty)
-      - config:/var/lib/unifi
+      - ./unifi-config:/var/lib/unifi
       - log:/usr/lib/unifi/logs
       - log2:/var/log/unifi
       - run:/usr/lib/unifi/run
@@ -27,22 +27,46 @@ services:
       - "traefik.controller.frontend.rule=Host:CHANGEME"
       - "traefik.controller.port=8443"
       - "traefik.controller.protocol=https"
+  certdumper:
+    container_name: traefik_certdumper
+    image: alpine:latest
+    depends_on:
+      - traefik
+    restart: unless-stopped
+    volumes:
+      - ./traefik/acme:/traefik
+      - ./unifi-config:/unifi
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: >
+      ash -c " \
+             apk --no-cache add inotify-tools jq openssl util-linux bash openjdk8-jre-base docker && \
+             wget https://raw.githubusercontent.com/containous/traefik/master/contrib/scripts/dumpcerts.sh -O dumpcerts.sh && \
+             mkdir -p /traefik/ssl/ && \
+             bash dumpcerts.sh /traefik/acme.json /traefik/ssl/ && \
+             openssl pkcs12 -export -inkey /traefik/ssl/private/CHANGEME.key -in /traefik/ssl/certs/CHANGEME.crt -out /traefik/ssl/CHANGEME.p12 -name unifi -password pass:unifi && \
+             cp /unifi/keystore /unifi/keystore.backup.$$(date +%F_%R) && \
+             keytool -importkeystore -deststorepass aircontrolenterprise -destkeypass aircontrolenterprise -destkeystore /unifi/keystore -srckeystore /traefik/ssl/CHANGEME.p12 -srcstoretype PKCS12 -srcstorepass unifi -alias unifi -noprompt && \
+             docker unifi restart && \
+             while true; do \
+               inotifywait -e modify /traefik/acme.json && \
+               bash dumpcerts.sh /traefik/acme.json /traefik/ssl/ && \
+               openssl pkcs12 -export -inkey /traefik/ssl/private/CHANGEME.key -in /traefik/ssl/certs/CHANGEME.crt -out /traefik/ssl/CHANGEME.p12 -name unifi -password pass:unifi && \
+               cp /unifi/keystore /unifi/keystore.backup.$$(date +%F_%R)
+               keytool -importkeystore -deststorepass aircontrolenterprise -destkeypass aircontrolenterprise -destkeystore /unifi/keystore -srckeystore /traefik/ssl/CHANGEME.p12 -srcstoretype PKCS12 -srcstorepass unifi -alias unifi -noprompt && \
+               docker restart unifi; \
+             done"
   traefik:
     image: traefik:1.6
     container_name: traefik
     restart: always
     ports:
       - "80:80"
-      # - "443:443"
-      - "8443:8443"
-      # - "8843:8843"
-      - "4443:4443"
+      - "443:443"
     networks:
       - unifi
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ./traefik.toml:/traefik.toml
-      - ./acme.json:/acme.json
+	  - ./traefik:/etc/traefik
 volumes:
   config:
     driver: local
