@@ -51,7 +51,7 @@ services:
                inotifywait -e modify /traefik/acme.json && \
                bash dumpcerts.sh /traefik/acme.json /traefik/ssl/ && \
                openssl pkcs12 -export -inkey /traefik/ssl/private/CHANGEME.key -in /traefik/ssl/certs/CHANGEME.crt -out /traefik/ssl/CHANGEME.p12 -name unifi -password pass:unifi && \
-               cp /unifi/keystore /unifi/keystore.backup.$$(date +%F_%R)
+               cp /unifi/keystore /unifi/keystore.backup.$$(date +%F_%R) && \
                keytool -importkeystore -deststorepass aircontrolenterprise -destkeypass aircontrolenterprise -destkeystore /unifi/keystore -srckeystore /traefik/ssl/CHANGEME.p12 -srcstoretype PKCS12 -srcstorepass unifi -alias unifi -noprompt && \
                docker restart unifi; \
              done"
