@@ -43,6 +43,11 @@ Example: `./build.sh -v 5.9.29 -u 5.9.29-04b5d20997 -t 5.9 -t 5 -t latest`
 
 Example: `./publish.sh -v 5.9.29 -u 5.9.29-04b5d20997`
 
+# Tagging a stable release
+- `./tag.sh -v <docker version> -u <unifi version> [-t <additional docker tag> ...]`
+
+Example: `./tag.sh -v 5.9.29 -u 5.9.29-04b5d20997 -t 5.9 -t 5 -t latest`
+
 
 # TLS Support
 [TLS with Traefik](https://github.com/ryansch/docker-unifi-rpi/wiki/TLS-with-Traefik)
