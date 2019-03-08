@@ -28,8 +28,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Install any version from deb download
 # Use dpkg to mark the package for install (expect it to fail to complete the installation)
 # Use apt-get install -f to complete the installation with dependencies
-ENV UNIFI_VERSION 5.10.19-113b57454f
-ENV UNIFI_DOCKER_VERSION 5.10.19
+ENV UNIFI_VERSION 5.10.20-b06c46ec1d
+ENV UNIFI_DOCKER_VERSION 5.10.20
 RUN mkdir -p /tmp/build && \
       cd /tmp/build && \
       wget https://www.ubnt.com/downloads/unifi/${UNIFI_VERSION}/unifi_sysvinit_all.deb && \
