@@ -1,33 +1,30 @@
-FROM multiarch/qemu-user-static:arm as qemu
+FROM multiarch/qemu-user-static:aarch64 as qemu
 
 FROM debian:stretch-slim as untar
 
 # Due to a missing slash, the qemu-user-static image has
 # the binary copied to the _file_ /usr/bin
-COPY --from=qemu /usr/bin /tmp/qemu-arm-static.tar.gz
-RUN tar -C /usr/bin -zxvf /tmp/qemu-arm-static.tar.gz
+COPY --from=qemu /usr/bin /tmp/qemu-aarch64-static.tar.gz
+RUN tar -C /usr/bin -zxvf /tmp/qemu-aarch64-static.tar.gz
 
-FROM arm32v7/openjdk:8-slim-stretch
+FROM arm64v8/openjdk:8-slim-stretch
 LABEL maintainer="Ryan Schlesinger <ryan@ryanschlesinger.com>"
 
-COPY --from=untar /usr/bin/qemu-arm-static /usr/bin/qemu-arm-static
+COPY --from=untar /usr/bin/qemu-aarch64-static /usr/bin/qemu-aarch64-static
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
       wget \
       ca-certificates \
       gnupg \
       dirmngr \
-    && rm -rf /var/lib/apt/lists/* && \
-    wget https://archive.raspbian.org/raspbian.public.key -O - | apt-key add - && \
-    echo 'deb http://archive.raspbian.org/raspbian stretch main contrib non-free' >> /etc/apt/sources.list
+    && rm -rf /var/lib/apt/lists/*
 
 # Install any version from deb download
 # Use dpkg to mark the package for install (expect it to fail to complete the installation)
 # Use apt-get install -f to complete the installation with dependencies
-ENV UNIFI_VERSION {{ unifi_version }}
-ENV UNIFI_DOCKER_VERSION {{ docker_version }}
-RUN apt-get update && apt-get install -y --no-install-recommends wget && \
-      mkdir -p /tmp/build && \
+ENV UNIFI_VERSION 5.6.42
+ENV UNIFI_DOCKER_VERSION 5.6.42
+RUN mkdir -p /tmp/build && \
       cd /tmp/build && \
       wget -O /etc/apt/trusted.gpg.d/unifi-repo.gpg https://dl.ui.com/unifi/unifi-repo.gpg && \
       wget https://www.ubnt.com/downloads/unifi/${UNIFI_VERSION}/unifi_sysvinit_all.deb && \
