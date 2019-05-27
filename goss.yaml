@@ -33,7 +33,7 @@ process:
   mongod:
     running: true
 http:
-  http://127.0.0.1:8080/:
+  http://127.0.0.1:8080/status:
     status: 200
     allow-insecure: true
-    body: ["window.unifiConfig.version = '{{getEnv "UNIFI_DOCKER_VERSION"}}.0';"]
+    body: ["\"server_version\":\"{{getEnv "UNIFI_DOCKER_VERSION"}}\""]
