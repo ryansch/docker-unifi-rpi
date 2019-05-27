@@ -14,7 +14,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Use apt-get install -f to complete the installation with dependencies
 ENV UNIFI_VERSION {{ unifi_version }}
 ENV UNIFI_DOCKER_VERSION {{ docker_version }}
-RUN mkdir -p /tmp/build && \
+RUN mkdir -p /usr/share/man/man1 && \
+      mkdir -p /tmp/build && \
       cd /tmp/build && \
       wget -O /etc/apt/trusted.gpg.d/unifi-repo.gpg https://dl.ui.com/unifi/unifi-repo.gpg && \
       wget https://www.ubnt.com/downloads/unifi/${UNIFI_VERSION}/unifi_sysvinit_all.deb && \

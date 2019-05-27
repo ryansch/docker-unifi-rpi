@@ -1,16 +1,9 @@
 FROM multiarch/qemu-user-static:aarch64 as qemu
 
-FROM debian:stretch-slim as untar
-
-# Due to a missing slash, the qemu-user-static image has
-# the binary copied to the _file_ /usr/bin
-COPY --from=qemu /usr/bin /tmp/qemu-aarch64-static.tar.gz
-RUN tar -C /usr/bin -zxvf /tmp/qemu-aarch64-static.tar.gz
-
 FROM arm64v8/openjdk:8-slim-stretch
 LABEL maintainer="Ryan Schlesinger <ryan@ryanschlesinger.com>"
 
-COPY --from=untar /usr/bin/qemu-aarch64-static /usr/bin/qemu-aarch64-static
+COPY --from=qemu /usr/bin/qemu-aarch64-static /usr/bin/qemu-aarch64-static
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
       wget \
@@ -24,7 +17,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Use apt-get install -f to complete the installation with dependencies
 ENV UNIFI_VERSION {{ unifi_version }}
 ENV UNIFI_DOCKER_VERSION {{ docker_version }}
-RUN mkdir -p /tmp/build && \
+RUN mkdir -p /usr/share/man/man1 && \
+      mkdir -p /tmp/build && \
       cd /tmp/build && \
       wget -O /etc/apt/trusted.gpg.d/unifi-repo.gpg https://dl.ui.com/unifi/unifi-repo.gpg && \
       wget https://www.ubnt.com/downloads/unifi/${UNIFI_VERSION}/unifi_sysvinit_all.deb && \
