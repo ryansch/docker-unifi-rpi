@@ -5,6 +5,9 @@ services:
     container_name: unifi
     restart: always
     network_mode: host
+    # Uncomment the following to set java options
+    # environment:
+    #   JAVA_OPTS: -Xmx512M
     volumes:
       # Unifi v5.0.7 creates all of these directories (some remain empty)
       - config:/var/lib/unifi
