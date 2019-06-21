@@ -1,22 +1,22 @@
-image: ryansch/unifi-rpi:5.10.24
+image: ryansch/unifi-rpi:5.10.25
 tags:
   - 5.10
   - 5
   - latest
 manifests:
   -
-    image: ryansch/unifi-rpi:5.10.24-amd64
+    image: ryansch/unifi-rpi:5.10.25-amd64
     platform:
       architecture: amd64
       os: linux
   -
-    image: ryansch/unifi-rpi:5.10.24-arm32v7
+    image: ryansch/unifi-rpi:5.10.25-arm32v7
     platform:
       architecture: arm
       os: linux
       variant: v7
   -
-    image: ryansch/unifi-rpi:5.10.24-arm64v8
+    image: ryansch/unifi-rpi:5.10.25-arm64v8
     platform:
       architecture: arm64
       os: linux
