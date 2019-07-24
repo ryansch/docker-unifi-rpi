@@ -16,6 +16,8 @@ mo < templates/manifest.yml > "${family}/manifest.yml"
 mo < templates/Dockerfile.amd64 > "${family}/Dockerfile.amd64"
 mo < templates/Dockerfile.arm32v7 > "${family}/Dockerfile.arm32v7"
 mo < templates/Dockerfile.arm64v8 > "${family}/Dockerfile.arm64v8"
+mo < templates/entrypoint.sh > "${family}/entrypoint.sh"
+chmod +x "${family}/entrypoint.sh"
 
 echo 'Building Images'
 docker build --pull -t ryansch/unifi-rpi:${docker_version}-amd64 -f ${family}/Dockerfile.amd64 ${family}
