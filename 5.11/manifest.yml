@@ -1,5 +1,8 @@
 image: ryansch/unifi-rpi:5.11.50
 tags:
+  - 5.11
+  - 5
+  - latest
 manifests:
   -
     image: ryansch/unifi-rpi:5.11.50-amd64
