@@ -21,4 +21,6 @@ docker push ryansch/unifi-rpi:${docker_version}-arm32v7
 docker push ryansch/unifi-rpi:${docker_version}-arm64v8
 
 echo 'Pushing Manifest'
-manifest-tool push from-spec ${family}/manifest.yml
+username=$(basename $(ls ~/.password-store/docker-credential-helpers/aHR0cHM6Ly9pbmRleC5kb2NrZXIuaW8vdjEv/) .gpg)
+password=$(pass show docker-credential-helpers/aHR0cHM6Ly9pbmRleC5kb2NrZXIuaW8vdjEv/${username})
+manifest-tool --username=${username} --password=${password} push from-spec ${family}/manifest.yml
