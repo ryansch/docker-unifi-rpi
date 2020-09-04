@@ -1,19 +1,19 @@
-image: ryansch/unifi-rpi:6.0.15
+image: ryansch/unifi-rpi:6.0.18
 tags:
 manifests:
   -
-    image: ryansch/unifi-rpi:6.0.15-amd64
+    image: ryansch/unifi-rpi:6.0.18-amd64
     platform:
       architecture: amd64
       os: linux
   -
-    image: ryansch/unifi-rpi:6.0.15-arm32v7
+    image: ryansch/unifi-rpi:6.0.18-arm32v7
     platform:
       architecture: arm
       os: linux
       variant: v7
   -
-    image: ryansch/unifi-rpi:6.0.15-arm64v8
+    image: ryansch/unifi-rpi:6.0.18-arm64v8
     platform:
       architecture: arm64
       os: linux
