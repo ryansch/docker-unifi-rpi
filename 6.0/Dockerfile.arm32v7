@@ -42,8 +42,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Install any version from deb download
 # Use dpkg to mark the package for install (expect it to fail to complete the installation)
 # Use apt-get install -f to complete the installation with dependencies
-ENV UNIFI_VERSION 6.0.23-20b313f50d
-ENV UNIFI_DOCKER_VERSION 6.0.23
+ENV UNIFI_VERSION 6.0.24-b200bf6446
+ENV UNIFI_DOCKER_VERSION 6.0.24
 RUN mkdir -p /usr/share/man/man1 && \
       mkdir -p /tmp/build && \
       cd /tmp/build && \
