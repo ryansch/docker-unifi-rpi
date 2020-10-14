@@ -5,8 +5,8 @@ Docker images for running Ubiquiti's [UniFi Controller software](https://www.ubn
 # Supported tags and respective `Dockerfile` directory links
 
 - [`5.13.32`, `5.13` (*v5.13.32/5.13*)](https://github.com/ryansch/docker-unifi-rpi/blob/v5.13.32/5.13)
-- [`5.14.23`, `5.14`, `5`, `latest` (*v5.14.23/5.13*)](https://github.com/ryansch/docker-unifi-rpi/blob/v5.14.23/5.14)
-- [`6.0.26` (*6.0*)](https://github.com/ryansch/docker-unifi-rpi/blob/master/6.0)
+- [`5.14.23`, `5.14`, `5` (*v5.14.23/5.13*)](https://github.com/ryansch/docker-unifi-rpi/blob/v5.14.23/5.14)
+- [`6.0.27`, `6.0`, `6`, `latest` (*v6.0.27/6.0*)](https://github.com/ryansch/docker-unifi-rpi/blob/v6.0.27/6.0)
 - [`6.1.16` (*6.1*)](https://github.com/ryansch/docker-unifi-rpi/blob/master/6.1)
 
 ## Versions
