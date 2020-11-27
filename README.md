@@ -29,6 +29,14 @@ A Raspberry Pi running with [Docker and Docker Compose installed](https://docs.d
 4. `sudo docker-compose up -d`
 5. If using [host networking](https://docs.docker.com/network/host/), you may need to open the appropriate firewall ports on your Docker host (e.g., `8080/tcp 8443/tcp 8843/tcp 8880/tcp 3478/udp`) before you can access the web interface.
 
+### Updating to a new image
+When using docker-compose images
+
+1. `cd /opt/unifi` (or where your docker-compose.yml file is located)
+2. `docker-compose pull`
+3. `docker-compose down`
+3. `docker-compose up -d`
+
 ## From any computer on your network:
 
 Visit https://raspberrypi.local:8443/ with your browser. Replace `raspberrypi.local` with the actual hostname or local network IP address of your Raspberry Pi.
