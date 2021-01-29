@@ -14,7 +14,7 @@ RUN mkdir -p /tmp/build && \
 	cd /tmp/build && \
 	wget -O tini https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini-static${TINI_ARCH} && \
 	wget -O tini.asc https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini-static${TINI_ARCH}.asc && \
-  gpg --batch --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 595E85A6B1B4779EA4DAAEC70B588DFF0527A9B7 && \
+  gpg --batch --keyserver keyserver.ubuntu.com --recv-keys 595E85A6B1B4779EA4DAAEC70B588DFF0527A9B7 && \
   gpg --batch --verify tini.asc tini && \
 	cp tini /sbin/ && \
 	chmod +x /sbin/tini && \
@@ -42,8 +42,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Install any version from deb download
 # Use dpkg to mark the package for install (expect it to fail to complete the installation)
 # Use apt-get install -f to complete the installation with dependencies
-ENV UNIFI_VERSION 6.1.26-a072032c50
-ENV UNIFI_DOCKER_VERSION 6.1.26
+ENV UNIFI_VERSION 6.1.51-c1b4383e0f
+ENV UNIFI_DOCKER_VERSION 6.1.51
 RUN mkdir -p /usr/share/man/man1 && \
       mkdir -p /tmp/build && \
       cd /tmp/build && \
