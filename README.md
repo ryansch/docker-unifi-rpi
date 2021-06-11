@@ -7,7 +7,7 @@ Docker images for running Ubiquiti's [UniFi Controller software](https://www.ubn
 - [`6.0.45`, `6.0` (*v6.0.45/6.0*)](https://github.com/ryansch/docker-unifi-rpi/blob/v6.0.45/6.0)
 - [`6.1.71`, `6.1` (*v6.1.71/6.1*)](https://github.com/ryansch/docker-unifi-rpi/blob/v6.1.71/6.1)
 - [`6.2.25`, `6.2`, `6`, `latest` (*v6.2.25/6.2*)](https://github.com/ryansch/docker-unifi-rpi/blob/v6.2.25/6.2)
-- [`6.2.26` (*6.2*)](https://github.com/ryansch/docker-unifi-rpi/blob/master/6.2)
+- [`6.2.26` (*6.2*)](https://github.com/ryansch/docker-unifi-rpi/blob/main/6.2)
 
 ## Versions
 Ubiquiti releases 'unstable', 'testing', and 'stable candidate' versions as part of its beta group release structure.  These releases are included here.  Only stable releases are tagged with their general version (ex: `5.6` for the `5.6.30` stable release) or with `latest`.
@@ -24,7 +24,7 @@ A Raspberry Pi running with [Docker and Docker Compose installed](https://docs.d
 ## On rpi:
 
 1. `mkdir unifi && cd unifi`
-2. `curl -O https://raw.githubusercontent.com/ryansch/docker-unifi-rpi/master/docker-compose.yml`
+2. `curl -O https://raw.githubusercontent.com/ryansch/docker-unifi-rpi/main/docker-compose.yml`
 3. (Optional) Edit `docker-compose.yml` to point to a different tag if you don't want `latest`.
 4. `sudo docker-compose up -d`
 5. If using [host networking](https://docs.docker.com/network/host/), you may need to open the appropriate firewall ports on your Docker host (e.g., `8080/tcp 8443/tcp 8843/tcp 8880/tcp 3478/udp`) before you can access the web interface.
