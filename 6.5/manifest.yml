@@ -1,0 +1,20 @@
+image: ryansch/unifi-rpi:6.5.42
+tags:
+manifests:
+  -
+    image: ryansch/unifi-rpi:6.5.42-amd64
+    platform:
+      architecture: amd64
+      os: linux
+  -
+    image: ryansch/unifi-rpi:6.5.42-arm32v7
+    platform:
+      architecture: arm
+      os: linux
+      variant: v7
+  -
+    image: ryansch/unifi-rpi:6.5.42-arm64v8
+    platform:
+      architecture: arm64
+      os: linux
+      variant: v8
