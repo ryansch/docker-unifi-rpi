@@ -32,18 +32,19 @@ COPY --from=tini /sbin/tini /sbin/tini
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
       wget \
+      curl \
       ca-certificates \
       gnupg \
       dirmngr \
     && rm -rf /var/lib/apt/lists/* && \
-    wget https://archive.raspbian.org/raspbian.public.key -O - | apt-key add - && \
+    curl -fsSL https://archive.raspbian.org/raspbian.public.key | apt-key add - && \
     echo 'deb http://archive.raspbian.org/raspbian stretch main contrib non-free' >> /etc/apt/sources.list
 
 # Install any version from deb download
 # Use dpkg to mark the package for install (expect it to fail to complete the installation)
 # Use apt-get install -f to complete the installation with dependencies
-ENV UNIFI_VERSION 6.5.50-63e5907b04
-ENV UNIFI_DOCKER_VERSION 6.5.50
+ENV UNIFI_VERSION 6.5.54-3b5d40203c
+ENV UNIFI_DOCKER_VERSION 6.5.54
 RUN mkdir -p /usr/share/man/man1 && \
       mkdir -p /tmp/build && \
       cd /tmp/build && \

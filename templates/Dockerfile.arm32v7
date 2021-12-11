@@ -32,11 +32,12 @@ COPY --from=tini /sbin/tini /sbin/tini
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
       wget \
+      curl \
       ca-certificates \
       gnupg \
       dirmngr \
     && rm -rf /var/lib/apt/lists/* && \
-    wget https://archive.raspbian.org/raspbian.public.key -O - | apt-key add - && \
+    curl -fsSL https://archive.raspbian.org/raspbian.public.key | apt-key add - && \
     echo 'deb http://archive.raspbian.org/raspbian stretch main contrib non-free' >> /etc/apt/sources.list
 
 # Install any version from deb download

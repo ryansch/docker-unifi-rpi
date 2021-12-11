@@ -26,6 +26,6 @@ docker build --pull -t ryansch/unifi-rpi:${docker_version}-arm64v8 -f ${family}/
 
 echo 'Testing Images'
 GOSS_PATH='/usr/local/bin/goss-linux-amd64' dgoss run ryansch/unifi-rpi:${docker_version}-amd64
-GOSS_PATH='/usr/local/bin/goss-linux-arm' GOSS_WAIT_OPTS='-r 100s -s 1s > /dev/null' dgoss run ryansch/unifi-rpi:${docker_version}-arm32v7
+GOSS_PATH='/usr/local/bin/goss-linux-arm' GOSS_WAIT_OPTS='-r 200s -s 1s > /dev/null' dgoss run ryansch/unifi-rpi:${docker_version}-arm32v7
 # Testing arm64v8 is blocked on cross compiling goss for arm64
 # GOSS_PATH='/usr/local/bin/goss-linux-arm' GOSS_WAIT_OPTS='-r 100s -s 1s > /dev/null' dgoss run ryansch/unifi-rpi:${docker_version}-arm64v8
