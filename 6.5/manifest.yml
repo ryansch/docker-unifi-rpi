@@ -1,5 +1,8 @@
 image: ryansch/unifi-rpi:6.5.55
 tags:
+  - 6.5
+  - 6
+  - latest
 manifests:
   -
     image: ryansch/unifi-rpi:6.5.55-amd64
