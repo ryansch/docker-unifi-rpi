@@ -1,5 +1,8 @@
 image: ryansch/unifi-rpi:7.0.23
 tags:
+  - 7.0
+  - 7
+  - latest
 manifests:
   -
     image: ryansch/unifi-rpi:7.0.23-amd64
