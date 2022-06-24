@@ -16,7 +16,7 @@ Ubiquiti releases 'unstable', 'testing', and 'stable candidate' versions as part
 
 | Architecture | Available | Tag |
 | :----: | :----: | ---- |
-| am64 | ✅ | \<version tag\>-amd64 |
+| amd64 | ✅ | \<version tag\>-amd64 |
 | arm64v8 | ✅ | \<version tag\>-arm64v8 |
 | arm32v7 | ❌ | |
 
