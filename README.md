@@ -1,18 +1,26 @@
 # Overview
 
-Docker images for running Ubiquiti's [UniFi Controller software](https://www.ubnt.com/download/unifi/) on a [Raspberry Pi](https://www.raspberrypi.org/).
+Docker images for running Ubiquiti's [UniFi Controller software](https://www.ubnt.com/download/unifi/).
 
 # Supported tags and respective `Dockerfile` directory links
 
 - [`7.0.23`, `7.0` (*v7.0.23/7.0*)](https://github.com/ryansch/docker-unifi-rpi/blob/main/v7.0.23/7.0)
 - [`7.1.66`, `7.1`, `7`, `latest` (*v7.1.66/7.1*)](https://github.com/ryansch/docker-unifi-rpi/blob/main/v7.1.66/7.1)
+- [`7.1.67` (*7.1*)](https://github.com/ryansch/docker-unifi-rpi/blob/main/7.1)
 - [`7.2.85` (*7.2*)](https://github.com/ryansch/docker-unifi-rpi/blob/main/7.2)
 
 ## Versions
 Ubiquiti releases 'unstable', 'testing', and 'stable candidate' versions as part of its beta group release structure.  These releases are included here.  Only stable releases are tagged with their general version (ex: `5.6` for the `5.6.30` stable release) or with `latest`.
 
 ## Supported Architectures
-`arm32v7`,`arm64v8`, `amd64`
+
+| Architecture | Available | Tag |
+| :----: | :----: | ---- |
+| am64 | ✅ | \<version tag\>-amd64 |
+| arm64v8 | ✅ | \<version tag\>-arm64v8 |
+| arm32v7 | ❌ | |
+
+Note: arm32v7 is no longer supported due to a lack of upstream support for mongodb <= 3.6 for arm32/armhf
 
 # Usage
 

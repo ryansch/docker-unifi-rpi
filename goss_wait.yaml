@@ -1,29 +1,5 @@
 port:
-  tcp:6789:
-    listening: true
-    ip:
-    - 0.0.0.0
   tcp:8080:
-    listening: true
-    ip:
-    - 0.0.0.0
-  tcp:8443:
-    listening: true
-    ip:
-    - 0.0.0.0
-  tcp:8843:
-    listening: true
-    ip:
-    - 0.0.0.0
-  tcp:8880:
-    listening: true
-    ip:
-    - 0.0.0.0
-  tcp:27117:
-    listening: true
-    ip:
-    - 127.0.0.1
-  udp:3478:
     listening: true
     ip:
     - 0.0.0.0
