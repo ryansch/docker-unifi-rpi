@@ -10,12 +10,6 @@ manifests:
       architecture: amd64
       os: linux
   -
-    image: ryansch/unifi-rpi:{{ docker_version }}-arm32v7
-    platform:
-      architecture: arm
-      os: linux
-      variant: v7
-  -
     image: ryansch/unifi-rpi:{{ docker_version }}-arm64v8
     platform:
       architecture: arm64
