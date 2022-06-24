@@ -7,12 +7,6 @@ manifests:
       architecture: amd64
       os: linux
   -
-    image: ryansch/unifi-rpi:7.1.67-arm32v7
-    platform:
-      architecture: arm
-      os: linux
-      variant: v7
-  -
     image: ryansch/unifi-rpi:7.1.67-arm64v8
     platform:
       architecture: arm64
