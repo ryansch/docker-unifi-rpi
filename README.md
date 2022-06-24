@@ -7,7 +7,7 @@ Docker images for running Ubiquiti's [UniFi Controller software](https://www.ubn
 - [`7.0.23`, `7.0` (*v7.0.23/7.0*)](https://github.com/ryansch/docker-unifi-rpi/blob/main/v7.0.23/7.0)
 - [`7.1.66`, `7.1`, `7`, `latest` (*v7.1.66/7.1*)](https://github.com/ryansch/docker-unifi-rpi/blob/main/v7.1.66/7.1)
 - [`7.1.67` (*7.1*)](https://github.com/ryansch/docker-unifi-rpi/blob/main/7.1)
-- [`7.2.85` (*7.2*)](https://github.com/ryansch/docker-unifi-rpi/blob/main/7.2)
+- [`7.2.87` (*7.2*)](https://github.com/ryansch/docker-unifi-rpi/blob/main/7.2)
 
 ## Versions
 Ubiquiti releases 'unstable', 'testing', and 'stable candidate' versions as part of its beta group release structure.  These releases are included here.  Only stable releases are tagged with their general version (ex: `5.6` for the `5.6.30` stable release) or with `latest`.
