@@ -2,19 +2,22 @@
 
 docker_version=''
 unifi_version=''
+unifi_sha256=''
 declare -a docker_tags
 
 print_usage() {
-  echo "Usage: build.sh -v -u [-t]"
+  echo "Usage: build.sh -v -u -c [-t]"
 }
 
-while getopts ":hv:u:t:" opt; do
+while getopts ":hv:u:c:t:" opt; do
   case $opt in
     v ) docker_version=$OPTARG
       ;;
     u ) unifi_version=$OPTARG
       ;;
     t ) docker_tags+=( "$OPTARG" )
+      ;;
+    c ) unifi_sha256=$OPTARG
       ;;
     h) print_usage
       ;;
@@ -33,6 +36,7 @@ shift $((OPTIND -1))
 
 : "${docker_version:?-v required}"
 : "${unifi_version:?-u required}"
+: "${unifi_sha256:?-c required}"
 
 # Parse unifi family from docker_version
 IFS='.' read -ra version_ary <<< "$docker_version"

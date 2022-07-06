@@ -3,6 +3,7 @@ set -e
 
 docker_version=''
 unifi_version=''
+unifi_sha256=''
 family=''
 declare -a docker_tags
 
