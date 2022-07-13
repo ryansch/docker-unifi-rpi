@@ -87,7 +87,7 @@ RUN set -eux; \
       cd /tmp/build; \
       \
       wget -O /etc/apt/trusted.gpg.d/unifi-repo.gpg https://dl.ui.com/unifi/unifi-repo.gpg; \
-      wget -O unifi_sysvinit_all.deb https://fw-download.ubnt.com/data/unifi-controller/1aca-debian-${UNIFI_VERSION}.deb; \
+      wget -O unifi_sysvinit_all.deb https://dl.ui.com/unifi/${UNIFI_VERSION}/unifi_sysvinit_all.deb; \
       echo "${UNIFI_SHA256}  unifi_sysvinit_all.deb" | sha256sum --check; \
       apt-get update -y; \
       apt-get install -y --no-install-recommends \
