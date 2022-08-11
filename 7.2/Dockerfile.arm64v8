@@ -78,9 +78,9 @@ RUN set -eux; \
       rm -f /var/lib/apt/lists/*_*
 
 # Install any version from deb download
-ENV UNIFI_VERSION 7.2.91-85c367a4aa
-ENV UNIFI_DOCKER_VERSION 7.2.91
-ENV UNIFI_SHA256 d33e7b5a838a4c301ca545910e7119ba62bda80202259655191ced1e482cecde
+ENV UNIFI_VERSION 7.2.92
+ENV UNIFI_DOCKER_VERSION 7.2.92
+ENV UNIFI_SHA256 4c1f5f2406271f4f5848d00475b307b152638a5fa8bc1bbc17fa15b71aa1bc83
 
 RUN set -eux; \
       \
