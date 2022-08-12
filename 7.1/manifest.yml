@@ -1,5 +1,6 @@
 image: ryansch/unifi-rpi:7.1.68
 tags:
+  - 7.1
 manifests:
   -
     image: ryansch/unifi-rpi:7.1.68-amd64
