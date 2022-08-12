@@ -1,5 +1,8 @@
 image: ryansch/unifi-rpi:7.2.92
 tags:
+  - 7.2
+  - 7
+  - latest
 manifests:
   -
     image: ryansch/unifi-rpi:7.2.92-amd64
