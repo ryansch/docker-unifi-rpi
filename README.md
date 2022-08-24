@@ -7,6 +7,7 @@ Docker images for running Ubiquiti's [UniFi Controller software](https://www.ubn
 - [`7.0.23`, `7.0` (*v7.0.23/7.0*)](https://github.com/ryansch/docker-unifi-rpi/blob/main/v7.0.23/7.0)
 - [`7.1.68`, `7.1` (*v7.1.68/7.1*)](https://github.com/ryansch/docker-unifi-rpi/blob/main/v7.1.68/7.1)
 - [`7.2.92`, `7.2`, `7`, `latest` (*v7.2.92/7.2*)](https://github.com/ryansch/docker-unifi-rpi/blob/main/v7.2.92/7.2)
+- [`7.2.93` (*7.2*)](https://github.com/ryansch/docker-unifi-rpi/blob/main/7.2)
 
 ## Versions
 ⚠️  This project is transitioning from MongoDB 2.4 to 3.6. Direct upgrades are not possible! ⚠️
