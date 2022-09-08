@@ -46,3 +46,10 @@ if [ ${#version_ary[@]} -le 2 ]; then
   echo "Invalid version specified for -v"
   exit 1
 fi
+
+# Use java 11 for version 7.3 or greater
+if (( ${version_ary[0]} >= 7 )) && (( ${version_ary[1]} >= 3 )); then
+  java_package=openjdk-11-jre-headless
+else
+  java_package=openjdk-8-jre-headless
+fi

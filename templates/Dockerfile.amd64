@@ -52,7 +52,7 @@ RUN set -eux; \
         gnupg \
         dirmngr \
         apt-transport-https \
-        openjdk-8-jre-headless \
+        {{ java_package }} \
       ; \
       apt-get clean; \
       rm -f /var/lib/apt/lists/*_*

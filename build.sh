@@ -5,6 +5,7 @@ docker_version=''
 unifi_version=''
 unifi_sha256=''
 family=''
+java_package=''
 declare -a docker_tags
 
 . "lib/init_vars"
