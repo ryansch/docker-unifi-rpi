@@ -1,0 +1,112 @@
+FROM ubuntu:jammy as tini
+ENV TINI_VERSION v0.19.0
+ENV TINI_ARCH -amd64
+
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN set -eux; \
+      \
+      apt-get update -y; \
+      apt-get install -y --no-install-recommends \
+        wget \
+        ca-certificates \
+        gnupg \
+        dirmngr \
+        apt-transport-https \
+      ; \
+      apt-get clean; \
+      rm -f /var/lib/apt/lists/*_*
+
+RUN set -eux; \
+      \
+      mkdir -p /tmp/build; \
+	    cd /tmp/build; \
+      \
+      wget -O tini https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini-static${TINI_ARCH}; \
+      wget -O tini.asc https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini-static${TINI_ARCH}.asc; \
+      gpg --batch --keyserver  keyserver.ubuntu.com --recv-keys 595E85A6B1B4779EA4DAAEC70B588DFF0527A9B7; \
+      gpg --batch --verify tini.asc tini; \
+      cp tini /sbin/; \
+      chmod +x /sbin/tini; \
+      \
+      cd /tmp; \
+      rm -rf /tmp/build; \
+      rm -rf /root/.gnupg
+
+FROM ubuntu:jammy
+LABEL maintainer="Ryan Schlesinger <ryan@ryanschlesinger.com>"
+
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+ENV DEBIAN_FRONTEND=noninteractive
+
+COPY --from=tini /sbin/tini /sbin/tini
+
+RUN set -eux; \
+      \
+      apt-get update -y; \
+      apt-get install -y --no-install-recommends \
+        wget \
+        curl \
+        ca-certificates \
+        gnupg \
+        dirmngr \
+        apt-transport-https \
+        openjdk-11-jre-headless \
+      ; \
+      apt-get clean; \
+      rm -f /var/lib/apt/lists/*_*
+
+# Adapted from: https://get.glennr.nl/unifi/install/unifi-7.1.67.sh
+RUN set -eux; \
+      \
+      libssl_temp="$(mktemp --tmpdir=/tmp libssl1.0.2_XXXXX.deb)"; \
+      libssl_url=$(curl -s http://security.ubuntu.com/ubuntu/pool/main/o/openssl1.0/ | grep -io "libssl1.0.0.*amd64.deb" | sed '/u5_/d' | cut -d'"' -f1 | tail -n1); \
+      wget -O "$libssl_temp" "http://security.ubuntu.com/ubuntu/pool/main/o/openssl1.0/${libssl_url}"; \
+      dpkg -i "$libssl_temp"; \
+      rm --force "$libssl_temp" 2> /dev/null; \
+      \
+      wget -qO - https://www.mongodb.org/static/pgp/server-3.6.asc | gpg --dearmor | tee -a /usr/share/keyrings/mongodb-server-3.6.gpg &> /dev/null; \
+      echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-3.6.gpg ] https://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.6 multiverse" &> "/etc/apt/sources.list.d/mongodb-org-3.6.list"; \
+      apt-get update -y; \
+      apt-get -y -o Dpkg::Options::='--force-confdef' -o Dpkg::Options::='--force-confold' install \
+        mongodb-org \
+      ; \
+      apt-get clean; \
+      rm -f /var/lib/apt/lists/*_*
+
+# Install any version from deb download
+ENV UNIFI_VERSION 7.4.144-8ee1b6d9c2
+ENV UNIFI_DOCKER_VERSION 7.4.144
+ENV UNIFI_SHA256 1f545a07e0047513545bcd40e196733351b031f400d06cd735d6fa5cdd9bde11
+
+RUN set -eux; \
+      \
+      mkdir -p /usr/share/man/man1; \
+      mkdir -p /tmp/build; \
+      cd /tmp/build; \
+      \
+      wget -O /etc/apt/trusted.gpg.d/unifi-repo.gpg https://dl.ui.com/unifi/unifi-repo.gpg; \
+      wget -O unifi_sysvinit_all.deb https://dl.ui.com/unifi/${UNIFI_VERSION}/unifi_sysvinit_all.deb; \
+      echo "${UNIFI_SHA256}  unifi_sysvinit_all.deb" | sha256sum --check; \
+      apt-get update -y; \
+      apt-get install -y --no-install-recommends \
+        ./unifi_sysvinit_all.deb \
+        procps \
+      ; \
+      apt-get clean; \
+      rm -f /var/lib/apt/lists/*_*; \
+      rm -rf /tmp/build
+
+RUN set -eux; \
+      \
+      ln -s /var/lib/unifi /usr/lib/unifi/data
+
+EXPOSE 8080/tcp 8443/tcp 8843/tcp 8880/tcp 3478/udp
+
+WORKDIR /var/lib/unifi
+ENV JAVA_OPTS -Xmx1024M
+
+COPY entrypoint.sh /docker-entrypoint.sh
+ENTRYPOINT ["/sbin/tini", "-g", "--", "/docker-entrypoint.sh"]
+CMD ["start"]
