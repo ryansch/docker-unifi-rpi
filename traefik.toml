@@ -12,7 +12,7 @@ insecureSkipVerify = true
       entryPoint = "https"
 
   [entryPoints.https]
-    address = ":8443"
+    address = ":443"
 
     [entryPoints.https.tls]
       minVersion = "VersionTLS12"
