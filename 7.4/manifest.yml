@@ -1,13 +1,13 @@
-image: ryansch/unifi-rpi:7.4.149
+image: ryansch/unifi-rpi:7.4.150
 tags:
 manifests:
   -
-    image: ryansch/unifi-rpi:7.4.149-amd64
+    image: ryansch/unifi-rpi:7.4.150-amd64
     platform:
       architecture: amd64
       os: linux
   -
-    image: ryansch/unifi-rpi:7.4.149-arm64v8
+    image: ryansch/unifi-rpi:7.4.150-arm64v8
     platform:
       architecture: arm64
       os: linux
