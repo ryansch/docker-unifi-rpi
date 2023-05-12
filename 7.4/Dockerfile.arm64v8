@@ -1,4 +1,5 @@
-FROM ubuntu:jammy as tini
+# syntax=docker/dockerfile:1
+FROM arm64v8/ubuntu:kinetic as tini
 ENV TINI_VERSION v0.19.0
 ENV TINI_ARCH -arm64
 
@@ -34,15 +35,12 @@ RUN set -eux; \
       rm -rf /tmp/build; \
       rm -rf /root/.gnupg
 
-FROM multiarch/qemu-user-static:aarch64 as qemu
-
-FROM arm64v8/ubuntu:jammy
+FROM arm64v8/ubuntu:kinetic
 LABEL maintainer="Ryan Schlesinger <ryan@ryanschlesinger.com>"
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 ENV DEBIAN_FRONTEND=noninteractive
 
-COPY --from=qemu /usr/bin/qemu-aarch64-static /usr/bin/qemu-aarch64-static
 COPY --from=tini /sbin/tini /sbin/tini
 
 RUN set -eux; \
@@ -78,9 +76,9 @@ RUN set -eux; \
       rm -f /var/lib/apt/lists/*_*
 
 # Install any version from deb download
-ENV UNIFI_VERSION 7.4.150-638f548cee
-ENV UNIFI_DOCKER_VERSION 7.4.150
-ENV UNIFI_SHA256 11c36f845868265c110c79cb56b5495523dc86b6a3f20483f0cf837ac591be23
+ENV UNIFI_VERSION 7.4.155-f80577a3b3
+ENV UNIFI_DOCKER_VERSION 7.4.155
+ENV UNIFI_SHA256 3a7c9c3dc04560d8c296f69c0f3318308698becbd0e54147c0f8cf778eeee7bf
 
 RUN set -eux; \
       \
