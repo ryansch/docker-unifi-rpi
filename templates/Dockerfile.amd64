@@ -1,4 +1,5 @@
-FROM ubuntu:jammy as tini
+# syntax=docker/dockerfile:1
+FROM ubuntu:kinetic as tini
 ENV TINI_VERSION v0.19.0
 ENV TINI_ARCH -amd64
 
@@ -34,7 +35,7 @@ RUN set -eux; \
       rm -rf /tmp/build; \
       rm -rf /root/.gnupg
 
-FROM ubuntu:jammy
+FROM ubuntu:kinetic
 LABEL maintainer="Ryan Schlesinger <ryan@ryanschlesinger.com>"
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
