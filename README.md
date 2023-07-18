@@ -28,6 +28,21 @@ Ubiquiti releases 'unstable', 'testing', and 'stable candidate' versions as part
 
 Note: arm32v7 is no longer supported due to a lack of upstream support for mongodb <= 3.6 for arm32/armhf
 
+# Configuration
+
+As of 7.5.x, this container image supports unifi's standard configuration utilities.
+
+You can supply a system.properties file at `/var/lib/unifi/system.properies` (in the container) or set any of the following environment variables:
+
+| Environment Variable | Description | Default |
+| --- | --- | --- |
+| JVM_INIT_HEAP_SIZE | Initial Java heap size | None |
+| JVM_MAX_HEAP_SIZE | Maximum Java heap size | 1024M |
+| JAVA_ENTROPY_GATHER_DEVICE | Path to entropy gathering device | None |
+| UNIFI_JVM_EXTRA_OPTS | Additional JVM options | $JAVA_OPTS |
+
+Additionally, `-XX:+UseParallelGC` is used by default but can be changed with the unifi property `unifi.G1GC.enabled`.
+
 # Usage
 
 Documentation is in the [wiki](https://github.com/ryansch/docker-unifi-rpi/wiki).

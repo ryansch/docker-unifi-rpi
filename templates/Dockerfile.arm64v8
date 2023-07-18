@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-FROM arm64v8/ubuntu:kinetic as tini
+FROM arm64v8/ubuntu:lunar as tini
 ENV TINI_VERSION v0.19.0
 ENV TINI_ARCH -arm64
 
@@ -35,7 +35,7 @@ RUN set -eux; \
       rm -rf /tmp/build; \
       rm -rf /root/.gnupg
 
-FROM arm64v8/ubuntu:kinetic
+FROM arm64v8/ubuntu:lunar
 LABEL maintainer="Ryan Schlesinger <ryan@ryanschlesinger.com>"
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
@@ -98,15 +98,21 @@ RUN set -eux; \
       rm -f /var/lib/apt/lists/*_*; \
       rm -rf /tmp/build
 
+COPY script.sed /tmp/script.sed
 RUN set -eux; \
       \
-      ln -s /var/lib/unifi /usr/lib/unifi/data
+      cd /usr/sbin; \
+      sed -E -i.bak -f /tmp/script.sed unifi-network-service-helper; \
+      rm -f /tmp/script.sed
 
 EXPOSE 8080/tcp 8443/tcp 8843/tcp 8880/tcp 3478/udp
 
-WORKDIR /var/lib/unifi
-ENV JAVA_OPTS -Xmx1024M
+WORKDIR /usr/lib/unifi
 
 COPY entrypoint.sh /docker-entrypoint.sh
 ENTRYPOINT ["/sbin/tini", "-g", "--", "/docker-entrypoint.sh"]
 CMD ["start"]
+
+COPY healthcheck.sh /healthcheck.sh
+HEALTHCHECK --start-period=300s --timeout=30s --interval=30s \
+  CMD /healthcheck.sh || exit 1

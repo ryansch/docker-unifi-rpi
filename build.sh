@@ -14,11 +14,14 @@ declare -a docker_tags
 . "lib/mo"
 
 echo 'Emitting Templates'
-mo < templates/manifest.yml > "${family}/manifest.yml"
-mo < templates/Dockerfile.amd64 > "${family}/Dockerfile.amd64"
-mo < templates/Dockerfile.arm64v8 > "${family}/Dockerfile.arm64v8"
-mo < templates/entrypoint.sh > "${family}/entrypoint.sh"
+mo <templates/manifest.yml >"${family}/manifest.yml"
+mo <templates/Dockerfile.amd64 >"${family}/Dockerfile.amd64"
+mo <templates/Dockerfile.arm64v8 >"${family}/Dockerfile.arm64v8"
+mo <templates/entrypoint.sh >"${family}/entrypoint.sh"
+mo <templates/healthcheck.sh >"${family}/healthcheck.sh"
+mo <templates/script.sed >"${family}/script.sed"
 chmod +x "${family}/entrypoint.sh"
+chmod +x "${family}/healthcheck.sh"
 
 echo 'Building Images'
 docker build --platform linux/amd64 --pull -t ryansch/unifi-rpi:${docker_version}-amd64 -f ${family}/Dockerfile.amd64 ${family}
