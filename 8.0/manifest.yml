@@ -1,5 +1,8 @@
 image: ryansch/unifi-rpi:8.0.7
 tags:
+  - 8.0
+  - 8
+  - latest
 manifests:
   -
     image: ryansch/unifi-rpi:8.0.7-amd64
