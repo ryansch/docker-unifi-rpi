@@ -36,8 +36,8 @@ You can supply a system.properties file at `/var/lib/unifi/system.properies` (in
 
 | Environment Variable | Description | Default |
 | --- | --- | --- |
-| JVM_INIT_HEAP_SIZE | Initial Java heap size | None |
-| JVM_MAX_HEAP_SIZE | Maximum Java heap size | 1024M |
+| JVM_INIT_HEAP_SIZE | Initial Java heap size in MiB | None |
+| JVM_MAX_HEAP_SIZE | Maximum Java heap size in MiB | 1024 |
 | JAVA_ENTROPY_GATHER_DEVICE | Path to entropy gathering device | None |
 | UNIFI_JVM_EXTRA_OPTS | Additional JVM options | $JAVA_OPTS |
 
