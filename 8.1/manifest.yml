@@ -1,5 +1,6 @@
 image: ryansch/unifi-rpi:8.1.127
 tags:
+  - 8.1
 manifests:
   -
     image: ryansch/unifi-rpi:8.1.127-amd64
