@@ -1,14 +1,14 @@
 port:
-  tcp:8080:
+  tcp6:8080:
     listening: true
     ip:
-    - 0.0.0.0
+      - "::"
+  tcp6:8443:
+    listening: true
+    ip:
+      - "::"
 process:
   java:
     running: true
   mongod:
     running: true
-http:
-  http://127.0.0.1:8080/status:
-    status: 200
-    allow-insecure: true

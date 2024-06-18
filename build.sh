@@ -28,5 +28,6 @@ docker build --platform linux/amd64 --pull -t ryansch/unifi-rpi:${docker_version
 docker build --platform linux/arm64v8 --pull -t ryansch/unifi-rpi:${docker_version}-arm64v8 -f ${family}/Dockerfile.arm64v8 ${family}
 
 echo 'Testing Images'
-GOSS_PATH="${HOME}/.local/bin/goss-linux-amd64" GOSS_WAIT_OPTS='-r 60s -s 1s > /dev/null' dgoss run --platform linux/amd64 ryansch/unifi-rpi:${docker_version}-amd64
+# I can no longer test mongodb via rosetta 2 due to a dependency on AVX instructions.
+# GOSS_PATH="${HOME}/.local/bin/goss-linux-amd64" GOSS_WAIT_OPTS='-r 60s -s 1s > /dev/null' dgoss run --platform linux/amd64 ryansch/unifi-rpi:${docker_version}-amd64
 GOSS_PATH="${HOME}/.local/bin/goss-linux-arm64" GOSS_WAIT_OPTS='-r 60s -s 1s > /dev/null' dgoss run --platform linux/arm64v8 ryansch/unifi-rpi:${docker_version}-arm64v8
