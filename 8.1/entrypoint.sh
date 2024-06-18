@@ -29,9 +29,9 @@ if [ -d /var/lib/unifi/db ]; then
 	pushd /var/lib/unifi/db >/dev/null
 
 	if [ -f /var/lib/unifi/db/WiredTiger.turtle ]; then
-		major_version=$(cat WiredTiger.turtle | grep -E 'major=.+,minor=.+,patch=.+' | cut -d ',' -f 1 | cut -d '=' -f 2)
+		major_version=$(cat /var/lib/unifi/db/WiredTiger.turtle | grep -E 'major=.+,minor=.+,patch=.+' | cut -d ',' -f 1 | cut -d '=' -f 2)
 
-		if [ "${major_version}" != 11 ]; then
+		if (("${major_version}" < 11)); then
 			echo "Older mongodb files detected!"
 			echo "We've been forced to upgrade mongodb to version 7.0."
 			echo "You must back up your unifi network application, remove all docker volumes,"
