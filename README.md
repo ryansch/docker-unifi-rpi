@@ -11,7 +11,7 @@ Docker images for running Ubiquiti's [UniFi Controller software](https://www.ubn
 
 ## Versions
 
-⚠️  This project is transitioning to MongoDB 7.0. Direct upgrades are not possible! ⚠️
+⚠️  This project is transitioning to MongoDB 4.4. Direct upgrades are not possible! ⚠️
 
 I've added a check in the entrypoint that will prevent the Network Application (controller) from starting if
 the database files are from an older mongo and need to be upgraded. This will allow you to rollback to the container version you were using without issue. You can then schedule the upgrade when it's convenient.

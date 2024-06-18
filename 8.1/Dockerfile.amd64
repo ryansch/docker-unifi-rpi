@@ -61,12 +61,18 @@ RUN set -eux; \
       apt-get clean; \
       rm -rf /var/lib/apt/lists/*
 
+# Adapted from: https://get.glennr.nl/unifi/install/unifi-8.1.127.sh
 RUN set -eux; \
       \
-      curl -fsSL https://www.mongodb.org/static/pgp/server-7.0.asc | \
-      gpg -o /usr/share/keyrings/mongodb-server-7.0.gpg \
+      libssl_temp="$(mktemp --tmpdir=/tmp libssl1.1.1_XXXXX.deb)"; \
+      wget -qO "$libssl_temp" 'http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2.22_amd64.deb'; \
+      dpkg -i "$libssl_temp"; \
+      rm --force "$libssl_temp" 2> /dev/null; \
+      \
+      curl -fsSL https://www.mongodb.org/static/pgp/server-4.4.asc | \
+      gpg -o /usr/share/keyrings/mongodb-server-4.4.gpg \
       --dearmor ; \
-      echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-7.0.gpg ] https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/7.0 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-7.0.list; \
+      echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-4.4.gpg ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/4.4 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-4.4.list; \
       apt-get update; \
       apt-get -y --no-install-recommends -o Dpkg::Options::='--force-confdef' -o Dpkg::Options::='--force-confold' install \
         mongodb-org \
