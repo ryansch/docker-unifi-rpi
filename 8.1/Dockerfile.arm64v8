@@ -75,7 +75,7 @@ RUN set -eux; \
       echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-4.4.gpg ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/4.4 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-4.4.list; \
       apt-get update; \
       apt-get -y --no-install-recommends -o Dpkg::Options::='--force-confdef' -o Dpkg::Options::='--force-confold' install \
-        mongodb-org \
+        mongodb-org=4.4.18 \
       ; \
       apt-get clean; \
       rm -rf /var/lib/apt/lists/*
