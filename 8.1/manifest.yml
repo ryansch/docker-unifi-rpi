@@ -1,0 +1,14 @@
+image: ryansch/unifi-rpi:8.1.127
+tags:
+manifests:
+  -
+    image: ryansch/unifi-rpi:8.1.127-amd64
+    platform:
+      architecture: amd64
+      os: linux
+  -
+    image: ryansch/unifi-rpi:8.1.127-arm64v8
+    platform:
+      architecture: arm64
+      os: linux
+      variant: v8

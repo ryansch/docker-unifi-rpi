@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1
 # hadolint global ignore=DL3008
 # hadolint global ignore=DL3003
-FROM arm64v8/ubuntu:mantic as tini
+FROM arm64v8/ubuntu:noble as tini
 ENV TINI_VERSION v0.19.0
 ENV TINI_ARCH -arm64
 
@@ -37,7 +37,7 @@ RUN set -eux; \
       rm -rf /tmp/build; \
       rm -rf /root/.gnupg
 
-FROM arm64v8/ubuntu:mantic
+FROM arm64v8/ubuntu:noble
 LABEL maintainer="Ryan Schlesinger <ryan@ryanschlesinger.com>"
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
@@ -51,6 +51,7 @@ RUN set -eux; \
       apt-get update -y; \
       apt-get install -y --no-install-recommends \
         wget \
+        curl \
         ca-certificates \
         gnupg \
         dirmngr \
@@ -60,17 +61,13 @@ RUN set -eux; \
       apt-get clean; \
       rm -rf /var/lib/apt/lists/*
 
-# Adapted from: https://get.glennr.nl/unifi/install/unifi-7.1.67.sh
 RUN set -eux; \
       \
-      libssl_temp="$(mktemp --tmpdir=/tmp libssl1.0.2_XXXXX.deb)"; \
-      wget -qO "$libssl_temp" 'https://launchpad.net/ubuntu/+source/openssl1.0/1.0.2n-1ubuntu5/+build/14503127/+files/libssl1.0.0_1.0.2n-1ubuntu5_arm64.deb'; \
-      dpkg -i "$libssl_temp"; \
-      rm --force "$libssl_temp" 2> /dev/null; \
-      \
-      wget -qO - https://www.mongodb.org/static/pgp/server-3.6.asc | gpg --dearmor | tee -a /usr/share/keyrings/mongodb-server-3.6.gpg &> /dev/null; \
-      echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-3.6.gpg ] https://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.6 multiverse" &> "/etc/apt/sources.list.d/mongodb-org-3.6.list"; \
-      apt-get update -y; \
+      curl -fsSL https://www.mongodb.org/static/pgp/server-7.0.asc | \
+      gpg -o /usr/share/keyrings/mongodb-server-7.0.gpg \
+      --dearmor ; \
+      echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-7.0.gpg ] https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/7.0 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-7.0.list; \
+      apt-get update; \
       apt-get -y --no-install-recommends -o Dpkg::Options::='--force-confdef' -o Dpkg::Options::='--force-confold' install \
         mongodb-org \
       ; \

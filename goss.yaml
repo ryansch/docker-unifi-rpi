@@ -1,39 +1,19 @@
 port:
-  tcp:6789:
+  tcp6:8080:
     listening: true
     ip:
-    - 0.0.0.0
-  tcp:8080:
+    - "::"
+  tcp6:8443:
     listening: true
     ip:
-    - 0.0.0.0
-  tcp:8443:
-    listening: true
-    ip:
-    - 0.0.0.0
-  tcp:8843:
-    listening: true
-    ip:
-    - 0.0.0.0
-  tcp:8880:
-    listening: true
-    ip:
-    - 0.0.0.0
-  tcp:27117:
-    listening: true
-    ip:
-    - 127.0.0.1
-  udp:3478:
-    listening: true
-    ip:
-    - 0.0.0.0
+    - "::"
 process:
   java:
     running: true
   mongod:
     running: true
 http:
-  http://127.0.0.1:8080/status:
+  https://127.0.0.1:8443/status:
     status: 200
     allow-insecure: true
     body: ["\"server_version\":\"{{getEnv "UNIFI_DOCKER_VERSION"}}\""]
