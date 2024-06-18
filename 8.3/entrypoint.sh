@@ -5,7 +5,7 @@ set -euo pipefail
 function get_unifi_property() {
 	if [ -f /var/lib/unifi/system.properties ]; then
 		property_name=$1
-		cut -d "=" -f2 <<<$(grep "^[^#;]" /var/lib/unifi/system.properties | grep $property_name)
+		cut -d "=" -f2 <<<$(grep "^[^#;]" /var/lib/unifi/system.properties | grep "$property_name")
 	fi
 }
 
@@ -13,7 +13,8 @@ function verify_unifi_port() {
 	local property_name=$1
 	local required_port=$2
 
-	local actual_port=$(get_unifi_property $property_name)
+	local actual_port
+	actual_port=$(get_unifi_property "$property_name")
 
 	if [ "${actual_port:-$required_port}" != "$required_port" ]; then
 		echo
@@ -28,12 +29,11 @@ if [ -d /var/lib/unifi/db ]; then
 	pushd /var/lib/unifi/db >/dev/null
 
 	if [ -f /var/lib/unifi/db/WiredTiger.turtle ]; then
-		# Check for WiredTiger version 3.x.x
-		major_version=$(cat WiredTiger.turtle | egrep 'major=.+,minor=.+,patch=.+' | cut -d ',' -f 1 | cut -d '=' -f 2)
+		major_version=$(cat /var/lib/unifi/db/WiredTiger.turtle | grep -E 'major=.+,minor=.+,patch=.+' | cut -d ',' -f 1 | cut -d '=' -f 2)
 
-		if [ "${major_version}" != 3 ]; then
+		if (("${major_version}" < 10)); then
 			echo "Older mongodb files detected!"
-			echo "We've been forced to upgrade mongodb to version 3.6."
+			echo "We've been forced to upgrade mongodb to version 4.4."
 			echo "You must back up your unifi network application, remove all docker volumes,"
 			echo "start up unifi, and restore from backup during setup."
 			exit 1

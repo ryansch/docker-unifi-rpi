@@ -1,0 +1,13 @@
+image: ryansch/unifi-rpi:8.3.20
+tags:
+manifests:
+  -
+    image: ryansch/unifi-rpi:8.3.20-amd64
+    platform:
+      architecture: amd64
+      os: linux
+  -
+    image: ryansch/unifi-rpi:8.3.20-arm64v8
+    platform:
+      architecture: arm64
+      os: linux
