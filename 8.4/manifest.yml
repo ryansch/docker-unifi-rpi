@@ -1,0 +1,16 @@
+image: ryansch/unifi-rpi:8.4.59
+tags:
+  - 8.4
+  - 8
+  - latest
+manifests:
+  -
+    image: ryansch/unifi-rpi:8.4.59-amd64
+    platform:
+      architecture: amd64
+      os: linux
+  -
+    image: ryansch/unifi-rpi:8.4.59-arm64v8
+    platform:
+      architecture: arm64
+      os: linux
