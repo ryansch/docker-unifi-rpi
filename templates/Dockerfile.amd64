@@ -65,7 +65,7 @@ RUN set -eux; \
 RUN set -eux; \
       \
       libssl_temp="$(mktemp --tmpdir=/tmp libssl1.1.1_XXXXX.deb)"; \
-      wget -qO "$libssl_temp" 'http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2.22_amd64.deb'; \
+      wget -qO "$libssl_temp" 'http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2.23_amd64.deb'; \
       dpkg -i "$libssl_temp"; \
       rm --force "$libssl_temp" 2> /dev/null; \
       \
