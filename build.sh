@@ -1,13 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-docker_version=''
-unifi_version=''
-unifi_sha256=''
-family=''
-java_package=''
-declare -a docker_tags
-
 . "lib/init_vars"
 
 # Source mo for templates
@@ -33,4 +26,4 @@ popd
 
 echo 'Testing Images'
 GOSS_PATH="${HOME}/.local/bin/goss-linux-amd64" GOSS_WAIT_OPTS='-r 60s -s 1s > /dev/null' dgoss run --platform linux/amd64 "ryansch/unifi:${docker_version}"
-GOSS_PATH="${HOME}/.local/bin/goss-linux-arm64" GOSS_WAIT_OPTS='-r 60s -s 1s > /dev/null' dgoss run --platform linux/arm64v8 "ryansch/unifi:${docker_version}"
+GOSS_PATH="${HOME}/.local/bin/goss-linux-arm64" GOSS_WAIT_OPTS='-r 60s -s 1s > /dev/null' dgoss run --platform linux/arm64 "ryansch/unifi:${docker_version}"
