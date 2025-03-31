@@ -13,6 +13,10 @@ variable "unifi_sha256" {
 variable "java_package" {
 }
 
+variable "extra_tags" {
+  default = []
+}
+
 target "unifi" {
   context    = "."
   dockerfile = "Dockerfile"
@@ -24,11 +28,9 @@ target "unifi" {
     JAVA_PACKAGE         = java_package
   }
 
-  tags = ["ryansch/unifi-rpi:${docker_version}", "ryansch/unifi:${docker_version}"]
+  tags = concat(["ryansch/unifi-rpi:${docker_version}", "ryansch/unifi:${docker_version}"], extra_tags)
 
   platforms = ["linux/arm64", "linux/amd64"]
-
-  output = [{ type = "image" }]
 }
 
 target "unifi-arm" {
