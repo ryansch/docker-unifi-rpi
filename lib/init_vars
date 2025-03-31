@@ -3,40 +3,44 @@
 docker_version=''
 unifi_version=''
 unifi_sha256=''
-declare -a docker_tags
+family=''
+java_package=''
+
+docker_tags_ary=()
+docker_tags=''
 
 print_usage() {
-	echo "Usage: build.sh -v -u -c [-t]"
+  echo "Usage: build.sh -v -u -c [-t]"
 }
 
 while getopts ":hv:u:c:t:" opt; do
-	case $opt in
-	v)
-		docker_version=$OPTARG
-		;;
-	u)
-		unifi_version=$OPTARG
-		;;
-	t)
-		docker_tags+=("$OPTARG")
-		;;
-	c)
-		unifi_sha256=$OPTARG
-		;;
-	h)
-		print_usage
-		;;
-	\?)
-		"Invalid Option: -$OPTARG" 1>&2
-		print_usage
-		exit 1
-		;;
-	:)
-		echo "Invalid option: $OPTARG requires an argument" 1>&2
-		print_usage
-		exit 1
-		;;
-	esac
+  case $opt in
+  v)
+    docker_version=$OPTARG
+    ;;
+  u)
+    unifi_version=$OPTARG
+    ;;
+  t)
+    docker_tags_ary+=("$OPTARG")
+    ;;
+  c)
+    unifi_sha256=$OPTARG
+    ;;
+  h)
+    print_usage
+    ;;
+  \?)
+    "Invalid Option: -$OPTARG" 1>&2
+    print_usage
+    exit 1
+    ;;
+  :)
+    echo "Invalid option: $OPTARG requires an argument" 1>&2
+    print_usage
+    exit 1
+    ;;
+  esac
 done
 shift $((OPTIND - 1))
 
@@ -49,16 +53,20 @@ IFS='.' read -ra version_ary <<<"$docker_version"
 family="${version_ary[0]}.${version_ary[1]}"
 
 if [ ${#version_ary[@]} -le 2 ]; then
-	echo "Invalid version specified for -v"
-	exit 1
+  echo "Invalid version specified for -v"
+  exit 1
 fi
 
 # Use java 17 for version 7.5 or greater
 if ((${version_ary[0]} >= 7)) && ((${version_ary[1]} >= 5)); then
-	java_package=openjdk-17-jre-headless
+  java_package=openjdk-17-jre-headless
 # Use java 11 for version 7.3 or greater
 elif ((${version_ary[0]} >= 7)) && ((${version_ary[1]} >= 3)); then
-	java_package=openjdk-11-jre-headless
+  java_package=openjdk-11-jre-headless
 else
-	java_package=openjdk-8-jre-headless
+  java_package=openjdk-8-jre-headless
 fi
+
+for tag in "${docker_tags_ary[@]}"; do
+  docker_tags="$docker_tags --set unifi.tags=ryansch/unifi-rpi:${tag} --set unifi.tags=ryansch/unifi:${tag}"
+done

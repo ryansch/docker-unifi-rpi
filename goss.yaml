@@ -2,11 +2,11 @@ port:
   tcp6:8080:
     listening: true
     ip:
-    - "::"
+      - "::"
   tcp6:8443:
     listening: true
     ip:
-    - "::"
+      - "::"
 process:
   java:
     running: true
@@ -16,4 +16,5 @@ http:
   https://127.0.0.1:8443/status:
     status: 200
     allow-insecure: true
-    body: ["\"server_version\":\"{{getEnv "UNIFI_DOCKER_VERSION"}}\""]
+    # FIXME: goss is getting "object: *http.cancelTimerBody" as the body contents
+    # body: ["\"server_version\":\"{{getEnv "UNIFI_DOCKER_VERSION"}}\""]

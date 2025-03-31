@@ -12,3 +12,7 @@ process:
     running: true
   mongod:
     running: true
+http:
+  https://127.0.0.1:8443/status:
+    status: 200
+    allow-insecure: true
