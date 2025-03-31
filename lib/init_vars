@@ -68,5 +68,5 @@ else
 fi
 
 for tag in "${docker_tags_ary[@]}"; do
-  docker_tags="$docker_tags --set unifi.tags=ryansch/unifi-rpi:${tag}"
+  docker_tags="$docker_tags --set unifi.tags=ryansch/unifi-rpi:${tag} --set unifi.tags=ryansch/unifi:${tag}"
 done
