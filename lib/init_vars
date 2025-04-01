@@ -57,8 +57,11 @@ if [ ${#version_ary[@]} -le 2 ]; then
   exit 1
 fi
 
+# Use java 21 for version 9.0 or greater
+if ((${version_ary[0]} >= 9)) && ((${version_ary[1]} >= 0)); then
+  java_package=openjdk-21-jre-headless
 # Use java 17 for version 7.5 or greater
-if ((${version_ary[0]} >= 7)) && ((${version_ary[1]} >= 5)); then
+elif ((${version_ary[0]} >= 7)) && ((${version_ary[1]} >= 5)); then
   java_package=openjdk-17-jre-headless
 # Use java 11 for version 7.3 or greater
 elif ((${version_ary[0]} >= 7)) && ((${version_ary[1]} >= 3)); then
