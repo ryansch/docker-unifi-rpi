@@ -1,0 +1,41 @@
+name: Build Image
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - uses: actions/checkout@v4
+
+      # TODO: Do templates even make sense now?
+      - name: Emit Templates
+        run: |
+          echo "hi"
+
+      # FIXME: We're missing env vars
+      - name: Build
+        id: build
+        uses: docker/bake-action@v6
+        with:
+          source: .
+          files: ./9.0/bake.hcl
+          targets: unifi
+          pull: true
+
+      - name: Parse build metadata
+        id: build-metadata
+        env:
+          BUILD_TARGET: unifi
+          BUILD_METADATA: ${{ steps.build.outputs.metadata }}
+        run: |
+          echo $BUILD_METADATA | jq --arg target "$BUILD_TARGET" -j '"image=", .[$target]."image.name"' >> $GITHUB_OUTPUT
