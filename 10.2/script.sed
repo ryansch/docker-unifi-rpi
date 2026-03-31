@@ -1,0 +1,2 @@
+/logger/c\
+echo "${@}"
