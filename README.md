@@ -7,16 +7,9 @@ Docker images for running Ubiquiti's [UniFi Controller software](https://www.ubn
 - [`10.0.160`, `10.0` (v10.0.160/10.0)](https://github.com/ryansch/docker-unifi-rpi/tree/v10.0.160/10.0)
 - [`10.1.89`, `10.1` (v10.1.89/10.1)](https://github.com/ryansch/docker-unifi-rpi/tree/v10.1.89/10.1)
 - [`10.2.105`, `10.2` (v10.2.105/10.2)](https://github.com/ryansch/docker-unifi-rpi/tree/v10.2.105/10.2)
-- [`10.3.55`, `10.3`, `10`, `latest` (v10.3.55/10.3)](https://github.com/ryansch/docker-unifi-rpi/tree/v10.3.55/10.3)
+- [`10.3.58`, `10.3`, `10`, `latest` (v10.3.58/10.3)](https://github.com/ryansch/docker-unifi-rpi/tree/v10.3.58/10.3)
 
 ## Versions
-
-⚠️  This project is transitioning to MongoDB 4.4. Direct upgrades are not possible! ⚠️
-
-I've added a check in the entrypoint that will prevent the Network Application (controller) from starting if
-the database files are from an older mongo and need to be upgraded. This will allow you to rollback to the container version you were using without issue. You can then schedule the upgrade when it's convenient.
-
-Upgrade instructions are here: <https://github.com/ryansch/docker-unifi-rpi/issues/95>
 
 Ubiquiti releases 'unstable', 'testing', and 'stable candidate' versions as part of its beta group release structure.  These releases are included here.  Only stable releases are tagged with their general version (ex: `5.6` for the `5.6.30` stable release) or with `latest`.
 
