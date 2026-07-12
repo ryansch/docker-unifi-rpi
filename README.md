@@ -1,3 +1,20 @@
+# UniFi RPi
+
+> [!WARNING]
+>
+> ## ⚠️ This project is deprecated
+>
+> Ubiquiti now offers an officially supported way to self-host the UniFi Network
+> application on your own hardware:
+> **[Self-Hosting UniFi (UniFi OS Server)](https://help.ui.com/hc/en-us/articles/34210126298775-Self-Hosting-UniFi)**.
+> Because it is maintained by Ubiquiti directly, it is the recommended path going
+> forward and this community image is no longer needed.
+>
+> **No further version updates will be published here.** The existing images remain
+> available for now, but you should plan to migrate to UniFi OS Server.
+>
+> See that guide for installation and migration instructions.
+
 # Overview
 
 Docker images for running Ubiquiti's [UniFi Controller software](https://www.ubnt.com/download/unifi/).
